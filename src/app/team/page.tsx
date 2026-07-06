@@ -211,7 +211,7 @@ export default function TeamPage() {
                         className="flex flex-col items-center"
                     >
                         <div className="text-center">
-                            <p className="font-mono font-bold text-2xl mb-2 bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-600 text-transparent bg-clip-text">
+                            <p className="font-mono font-bold text-2xl mb-2 bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-600 text-transparent bg-clip-text">
                                 {executive.name}
                             </p>
                             <a
@@ -257,7 +257,7 @@ export default function TeamPage() {
                         className="flex flex-col items-center"
                     >
                        <div className="text-center">
-                            <p className="font-mono font-bold text-2xl mb-2 bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-600 text-transparent bg-clip-text">
+                            <p className="font-mono font-bold text-2xl mb-2 bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-600 text-transparent bg-clip-text">
                                 {executive.name.replace("Executives", "")}
                             </p>
                             {/*{executive.leads && executive.leads.length > 0 && (
@@ -304,7 +304,7 @@ export default function TeamPage() {
                         className="flex flex-col items-center"
                     >
                         <div className="text-center">
-                            <p className="font-mono font-bold text-2xl mb-2 bg-gradient-to-r from-yellow-500 via-amber-500 to-orange-600 text-transparent bg-clip-text">
+                            <p className="font-mono font-bold text-2xl mb-2 bg-gradient-to-r from-blue-500 via-indigo-500 to-violet-600 text-transparent bg-clip-text">
                                 {executive.name.replace("Executives", "")}
                             </p>
                             <div className="text-muted-foreground">

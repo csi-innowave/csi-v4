@@ -142,7 +142,7 @@ export default function EventDetailsDialog({
 
                                 {activeEvent.guest && (
                                     <div className="w-full p-3 bg-zinc-600/30 rounded-lg border border-gray-700">
-                                        <div className="flex items-center gap-2 text-emerald-400">
+                                        <div className="flex items-center gap-2 text-violet-400">
                                             <Users className="w-4 h-4" />
                                             <span className="font-semibold ">
                                                 Special Guest

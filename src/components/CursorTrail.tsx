@@ -1,232 +1,63 @@
-import React, { useEffect, useRef } from "react";
+"use client";
 
-interface Coordinates {
-    x: number;
-    y: number;
-}
+import React, { useEffect, useState } from "react";
+import { motion, useMotionValue, useSpring } from "framer-motion";
 
-interface CircleElement extends HTMLDivElement {
-    x: number;
-    y: number;
-}
+export default function CursorTrail() {
+    // useMotionValue avoids React state re-renders, enabling instant 60/120fps tracking
+    const cursorX = useMotionValue(-100);
+    const cursorY = useMotionValue(-100);
+    
+    // Hyper-responsive spring configuration for incredibly smooth, zero-lag following
+    const springConfig = { damping: 25, stiffness: 700, mass: 0.1 };
+    const cursorXSpring = useSpring(cursorX, springConfig);
+    const cursorYSpring = useSpring(cursorY, springConfig);
 
-class CursorTrailCore {
-    private coords: Coordinates = { x: 0, y: 0 };
-    private circles: CircleElement[] = [];
-    private colors: string[] = [
-        "#e0fcd3", // very light green
-        "#c3fcb8",
-        "#a6f79d",
-        "#8af282",
-        "#6fec67",
-        "#54e74c",
-        "#41d324", // your bright green
-        "#2bbf3a",
-        "#1d7a16", // your dark green
-        "#176312",
-        "#11510e",
-        "#0b3f0a",
-        "#072e07",
-        "#052205",
-        "#031803",
-        "#021202",
-        "#010a01",
-        "#010701",
-        "#010501",
-        "#010301",
-        "#000200",
-        "#000000", // black
-    ];
-    private animationId: number | null = null;
-
-    constructor(numberOfCircles: number = 20, customColors?: string[]) {
-        if (customColors) {
-            this.colors = customColors;
-        }
-        this.createCircles(numberOfCircles);
-        this.initializeCircles();
-        this.bindEvents();
-        this.startAnimation();
-    }
-
-    private createCircles(count: number): void {
-        for (let i = 0; i < count; i++) {
-            const circle = document.createElement("div") as CircleElement;
-            circle.classList.add("cursor-trail-circle");
-            circle.x = 0;
-            circle.y = 0;
-
-            Object.assign(circle.style, {
-                height: "24px",
-                width: "24px",
-                borderRadius: "24px",
-                backgroundColor: this.colors[i % this.colors.length],
-                position: "fixed",
-                top: "0px",
-                left: "0px",
-                pointerEvents: "none",
-                zIndex: "99999999",
-                transition: "opacity 0.3s ease",
-            });
-
-            document.body.appendChild(circle);
-            this.circles.push(circle);
-        }
-    }
-
-    private initializeCircles(): void {
-        this.circles.forEach((circle: CircleElement, index: number) => {
-            circle.x = 0;
-            circle.y = 0;
-            circle.style.backgroundColor =
-                this.colors[index % this.colors.length];
-        });
-    }
-
-    private bindEvents(): void {
-        const handleMouseMove = (e: MouseEvent) => {
-            this.coords.x = e.clientX;
-            this.coords.y = e.clientY;
-        };
-
-        const handleMouseLeave = () => {
-            this.circles.forEach((circle) => {
-                circle.style.opacity = "0";
-            });
-        };
-
-        const handleMouseEnter = () => {
-            this.circles.forEach((circle) => {
-                circle.style.opacity = "1";
-            });
-        };
-
-        window.addEventListener("mousemove", handleMouseMove);
-        document.addEventListener("mouseleave", handleMouseLeave);
-        document.addEventListener("mouseenter", handleMouseEnter);
-
-        this.cleanup = () => {
-            window.removeEventListener("mousemove", handleMouseMove);
-            document.removeEventListener("mouseleave", handleMouseLeave);
-            document.removeEventListener("mouseenter", handleMouseEnter);
-        };
-    }
-
-    private cleanup: (() => void) | null = null;
-
-    private animateCircles(): void {
-        let x: number = this.coords.x;
-        let y: number = this.coords.y;
-
-        this.circles.forEach((circle: CircleElement, index: number) => {
-            circle.style.left = `${x - 12}px`;
-            circle.style.top = `${y - 12}px`;
-
-            const scale: number =
-                (this.circles.length - index) / this.circles.length;
-            circle.style.transform = `scale(${scale})`;
-
-            circle.x = x;
-            circle.y = y;
-
-            const nextCircle: CircleElement =
-                this.circles[index + 1] || this.circles[0];
-            x += (nextCircle.x - x) * 0.3;
-            y += (nextCircle.y - y) * 0.3;
-        });
-
-        this.animationId = requestAnimationFrame(() => this.animateCircles());
-    }
-
-    private startAnimation(): void {
-        this.animateCircles();
-    }
-
-    public destroy(): void {
-        if (this.animationId !== null) {
-            cancelAnimationFrame(this.animationId);
-            this.animationId = null;
-        }
-
-        this.circles.forEach((circle) => {
-            if (document.body.contains(circle)) {
-                document.body.removeChild(circle);
-            }
-        });
-        this.circles = [];
-
-        if (this.cleanup) {
-            this.cleanup();
-        }
-    }
-}
-
-interface CursorTrailProps {
-    numberOfCircles?: number;
-    colors?: string[];
-    disabled?: boolean;
-}
-
-const CursorTrail: React.FC<CursorTrailProps> = ({
-    numberOfCircles = 20,
-    colors,
-    disabled = false,
-}) => {
-    const trailRef = useRef<CursorTrailCore | null>(null);
+    const [isHovering, setIsHovering] = useState(false);
 
     useEffect(() => {
-        if (disabled) return;
+        const updateMousePosition = (e: MouseEvent) => {
+            cursorX.set(e.clientX);
+            cursorY.set(e.clientY);
+        };
 
-        document.body.style.cursor = "none";
-        document.documentElement.style.cursor = "none";
+        const handleMouseOver = (e: MouseEvent) => {
+            const target = e.target as HTMLElement;
+            const isClickable =
+                window.getComputedStyle(target).cursor === "pointer" ||
+                target.tagName.toLowerCase() === "a" ||
+                target.tagName.toLowerCase() === "button";
+            setIsHovering(isClickable);
+        };
 
-        const style = document.createElement("style");
-        style.innerHTML = `
-      *, *:before, *:after {
-        cursor: none !important;
-      }
-      a, button, input, textarea, select {
-        cursor: none !important;
-      }
-      [role="button"], [onclick] {
-        cursor: none !important;
-      }
-    `;
-        document.head.appendChild(style);
-
-        trailRef.current = new CursorTrailCore(numberOfCircles, colors);
+        window.addEventListener("mousemove", updateMousePosition);
+        window.addEventListener("mouseover", handleMouseOver);
 
         return () => {
-            if (trailRef.current) {
-                trailRef.current.destroy();
-                trailRef.current = null;
-            }
-
-            document.body.style.cursor = "";
-            document.documentElement.style.cursor = "";
-
-            if (document.head.contains(style)) {
-                document.head.removeChild(style);
-            }
+            window.removeEventListener("mousemove", updateMousePosition);
+            window.removeEventListener("mouseover", handleMouseOver);
         };
-    }, [numberOfCircles, colors, disabled]);
+    }, [cursorX, cursorY]);
 
-    useEffect(() => {
-        if (disabled && trailRef.current) {
-            trailRef.current.destroy();
-            trailRef.current = null;
-
-            document.body.style.cursor = "";
-            document.documentElement.style.cursor = "";
-        } else if (!disabled && !trailRef.current) {
-            document.body.style.cursor = "none";
-            document.documentElement.style.cursor = "none";
-
-            trailRef.current = new CursorTrailCore(numberOfCircles, colors);
-        }
-    }, [disabled, numberOfCircles, colors]);
-
-    return null;
-};
-
-export default CursorTrail;
+    return (
+        <motion.div
+            className="pointer-events-none fixed top-0 left-0 z-[9999] rounded-full mix-blend-difference bg-white"
+            style={{
+                x: cursorXSpring,
+                y: cursorYSpring,
+                translateX: "-50%",
+                translateY: "-50%",
+            }}
+            animate={{
+                width: isHovering ? 48 : 16,
+                height: isHovering ? 48 : 16,
+            }}
+            transition={{
+                type: "spring",
+                stiffness: 400,
+                damping: 25,
+                mass: 0.5,
+            }}
+        />
+    );
+}
