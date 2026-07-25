@@ -196,6 +196,15 @@ export const people2: Person[] = [
             linkedin: "https://www.linkedin.com/in/naveen-verma-396b93276/",
         },
     },
+    {
+        id: 13,
+        image_source: "",
+        name: "Kshitij Dahiya",
+        position: "Research Head",
+        links: {
+            linkedin: "",
+        },
+    },
 ];
 
 // CSI_Advisors_Pics
