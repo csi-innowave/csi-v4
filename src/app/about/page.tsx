@@ -1,5 +1,3 @@
-"use client";
-
 import React from "react";
 import { GtaViPoster } from "@/components/GtaViPoster";
 import { ObjectivesSection } from "./Objectives";
@@ -10,6 +8,19 @@ import Image from "next/image";
 
 const spaceGrotesk = Space_Grotesk({ subsets: ["latin"], weight: ["300", "400", "500"] });
 const instrumentSerif = Instrument_Serif({ weight: "400", subsets: ["latin"], style: ["normal", "italic"] });
+
+export const metadata = {
+    title: "About - CSI V3 | Maharaja Agrasen Institute of Technology",
+    description: "Learn about the Computer Society of India (CSI) chapter at MAIT, our vision, mission, objectives, and ideology.",
+    keywords: [
+        "About CSI",
+        "Computer Society of India MAIT",
+        "Vision",
+        "Mission",
+        "Objectives",
+        "Ideology"
+    ]
+};
 
 export default function AboutCSI() {
     return (

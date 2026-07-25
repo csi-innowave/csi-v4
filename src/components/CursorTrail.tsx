@@ -20,8 +20,13 @@ export default function CursorTrail() {
 
     const [isHovering, setIsHovering] = useState(false);
     const [hoverIcon, setHoverIcon] = useState<string | null>(null);
+    const [isTouchDevice, setIsTouchDevice] = useState(false);
 
     useEffect(() => {
+        const isTouch = window.matchMedia("(pointer: coarse)").matches;
+        setIsTouchDevice(isTouch);
+        if (isTouch) return;
+
         const updateMousePosition = (e: MouseEvent) => {
             cursorX.set(e.clientX);
             cursorY.set(e.clientY);
@@ -53,6 +58,8 @@ export default function CursorTrail() {
             window.removeEventListener("mouseover", handleMouseOver);
         };
     }, [cursorX, cursorY]);
+
+    if (isTouchDevice) return null;
 
     return (
         <motion.div

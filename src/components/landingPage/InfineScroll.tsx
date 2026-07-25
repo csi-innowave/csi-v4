@@ -30,17 +30,22 @@ const logos = [
     { src: "https://res.cloudinary.com/dcvl4olut/image/upload/v1756318894/Microsoft-Azure-Logo_vvmcjr.png", alt: "Microsoft Azure" },
 ];
 
-const LogoCard = ({ logo }: { logo: { src: string; alt: string } }) => (
-    <div className="relative group w-32 md:w-40 h-16 md:h-20 mx-4 md:mx-6 flex items-center justify-center cursor-pointer flex-shrink-0">
-        <Image
-            src={logo.src}
-            alt={logo.alt}
-            width={200}
-            height={100}
-            className="w-full h-full object-contain transition-transform duration-500 hover:scale-110"
-        />
-    </div>
-);
+const LogoCard = ({ logo }: { logo: { src: string; alt: string } }) => {
+    const optimizedSrc = logo.src.includes('/upload/') 
+        ? logo.src.replace(/\/upload\//, '/upload/f_auto,q_auto,w_250/') 
+        : logo.src;
+    return (
+        <div className="relative group w-32 md:w-40 h-16 md:h-20 mx-4 md:mx-6 flex items-center justify-center cursor-pointer flex-shrink-0">
+            <Image
+                src={optimizedSrc}
+                alt={logo.alt}
+                width={200}
+                height={100}
+                className="w-full h-full object-contain transition-transform duration-500 hover:scale-110"
+            />
+        </div>
+    );
+};
 
 const InfiniteScrollBrand = () => {
     // Split logos into two rows for a denser, premium look

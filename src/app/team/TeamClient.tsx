@@ -93,7 +93,7 @@ const CyberGlassCard = ({ person, isLarge = false }: { person: any, isLarge?: bo
                     <div className="absolute inset-0 w-full h-full opacity-90 group-hover:opacity-100 transition-opacity duration-500">
                         {person.image_source ? (
                             <img
-                                src={person.image_source}
+                                src={person.image_source.includes('/upload/') ? person.image_source.replace(/\/upload\//, '/upload/f_auto,q_auto,w_400/') : person.image_source}
                                 alt={person.name}
                                 className="w-full h-full object-cover object-top"
                             />

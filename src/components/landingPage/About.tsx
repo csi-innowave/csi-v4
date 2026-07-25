@@ -162,7 +162,7 @@ export default function About() {
           {/* CardSwap Container */}
           <div className={`relative w-full flex justify-end ${on ? 'anim-slide-right' : 'opacity-0'}`} style={{ animationDelay: "0.8s" }}>
             {/* Responsive scale wrapper */}
-            <div className="transform -translate-x-4 md:-translate-x-8 lg:translate-x-0 xl:translate-x-4 translate-y-24 lg:translate-y-48 scale-[0.75] sm:scale-[0.85] md:scale-[0.95] lg:scale-[1.05] xl:scale-[1.15] origin-top-left transition-transform duration-700 hover:scale-[1.18]">
+            <div className="transform translate-y-12 lg:translate-y-48 scale-[0.55] xs:scale-[0.75] sm:scale-[0.85] md:scale-[0.95] lg:scale-[1.05] xl:scale-[1.15] origin-center lg:origin-top-left transition-transform duration-700 hover:scale-[1.18] -translate-x-4 md:-translate-x-8 lg:translate-x-0 xl:translate-x-4">
               <CardSwap
                 width={560}
                 height={460}

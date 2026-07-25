@@ -45,7 +45,7 @@ export default function ScrollThread() {
     const CurrentMoon = moonPhases[phaseIndex];
 
     return (
-        <div className="fixed top-[15vh] left-2 md:left-6 bottom-[15vh] w-12 z-50 pointer-events-none flex justify-center">
+        <div className="fixed top-[15vh] left-2 md:left-6 bottom-[15vh] w-12 z-50 pointer-events-none hidden md:flex justify-center">
             {/* Vertical Guide Line Track */}
             <div className="absolute top-0 bottom-0 w-[1px] bg-white/10 pointer-events-none z-0" />
 

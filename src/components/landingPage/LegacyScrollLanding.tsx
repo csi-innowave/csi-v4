@@ -16,92 +16,72 @@ const items = [
     {
         title: "SPIRIT OF ADVENTURE",
         description: "Embracing the digital revolution by hosting a VR gaming station at Techsurge & Mridang.",
-        header: (
-            <Image
-                src="https://res.cloudinary.com/du0mba5mz/image/upload/v1722872876/CSI/WhatsApp_Image_2024-08-05_at_14.28.28_95e8cc38_oeaoze.jpg"
-                alt="Adventure"
-                fill
-                className="object-cover"
-            />
-        ),
+        media: {
+            type: "image",
+            src: "https://res.cloudinary.com/du0mba5mz/image/upload/f_auto,q_auto/v1722872876/CSI/WhatsApp_Image_2024-08-05_at_14.28.28_95e8cc38_oeaoze.jpg",
+            alt: "Adventure",
+            className: ""
+        }
     },
     {
         title: "ART OF DESIGN",
         description: "Our team hand-printed this to leave a lasting mark on MindForge! The creativity speaks for itself.",
-        header: (
-            <video
-                src="https://res.cloudinary.com/du0mba5mz/video/upload/v1722875071/CSI/Recording_2024-08-05_215455_anz67d.mp4"
-                className="w-full h-full object-cover"
-                autoPlay
-                muted
-                loop
-                playsInline
-            />
-        ),
+        media: {
+            type: "video",
+            src: "https://res.cloudinary.com/du0mba5mz/video/upload/v1722875071/CSI/Recording_2024-08-05_215455_anz67d.mp4",
+            alt: "Art of Design",
+            className: ""
+        }
     },
     {
         title: "COMMUNICATION",
         description: "Communication and planning are absolutely crucial for any successful event.",
-        header: (
-            <video
-                src="https://res.cloudinary.com/du0mba5mz/video/upload/v1722875836/CSI/Untitled_design2_y9ylh7.mp4"
-                className="w-full h-full object-cover object-top"
-                autoPlay
-                muted
-                loop
-                playsInline
-            />
-        ),
+        media: {
+            type: "video",
+            src: "https://res.cloudinary.com/du0mba5mz/video/upload/v1722875836/CSI/Untitled_design2_y9ylh7.mp4",
+            alt: "Communication",
+            className: "object-top"
+        }
     },
     {
         title: "TEAM COLLABORATION",
         description: "The people who became family, always there through our highs and lows.",
-        header: (
-            <Image
-                src="https://res.cloudinary.com/du0mba5mz/image/upload/v1722877884/CSI/Screenshot_2024-08-05_224149_cdr5aj.png"
-                alt="Team Collaboration"
-                fill
-                className="object-cover grayscale hover:grayscale-0 transition-all duration-1000 object-[center_30%]"
-            />
-        ),
+        media: {
+            type: "image",
+            src: "https://res.cloudinary.com/du0mba5mz/image/upload/f_auto,q_auto/v1722877884/CSI/Screenshot_2024-08-05_224149_cdr5aj.png",
+            alt: "Team Collaboration",
+            className: "grayscale hover:grayscale-0 transition-all duration-1000 object-[center_30%]"
+        }
     },
     {
         title: "DIGITAL REVOLUTION",
         description: "Our VR gaming stall showcased our tech enthusiasm in the Innovation Mela.",
-        header: (
-            <video
-                src="https://res.cloudinary.com/du0mba5mz/video/upload/v1722877017/CSI/Untitled_design3_cvfszb.mp4"
-                className="w-full h-full object-cover"
-                autoPlay
-                muted
-                loop
-                playsInline
-            />
-        ),
+        media: {
+            type: "video",
+            src: "https://res.cloudinary.com/du0mba5mz/video/upload/v1722877017/CSI/Untitled_design3_cvfszb.mp4",
+            alt: "Digital Revolution",
+            className: ""
+        }
     },
     {
         title: "JOY OF CREATION",
         description: "Our entire team came together to create joyous memories and build something amazing!",
-        header: (
-            <Image
-                src="https://res.cloudinary.com/du0mba5mz/image/upload/v1722837673/CSI/Screenshot_2024-08-05_113134_vueyzc.png"
-                alt="Joy of Creation"
-                fill
-                className="object-cover object-[center_30%]"
-            />
-        ),
+        media: {
+            type: "image",
+            src: "https://res.cloudinary.com/du0mba5mz/image/upload/f_auto,q_auto/v1722837673/CSI/Screenshot_2024-08-05_113134_vueyzc.png",
+            alt: "Joy of Creation",
+            className: "object-[center_30%]"
+        }
     },
     {
         title: "VR INFUSION",
         description: "Join the quest for experiencing the ultimate thrill of bringing ideas to life.",
-        header: (
-            <Image
-                src="https://res.cloudinary.com/du0mba5mz/image/upload/v1722872876/CSI/WhatsApp_Image_2024-08-05_at_14.27.21_8391df60_ukn57q.jpg"
-                alt="VR Infusion"
-                fill
-                className="object-cover object-top"
-            />
-        ),
+        media: {
+            type: "image",
+            src: "https://res.cloudinary.com/du0mba5mz/image/upload/f_auto,q_auto/v1722872876/CSI/WhatsApp_Image_2024-08-05_at_14.27.21_8391df60_ukn57q.jpg",
+            alt: "VR Infusion",
+            className: "object-top"
+        }
     },
 ];
 
@@ -135,6 +115,12 @@ const ScrubbableContentBlock = ({
         [start, enterEnd, exitStart, end],
         [0, 1, 1, val(1, 0)]
     );
+
+    // Track active/visible state dynamically to unmount hidden videos/images
+    const [isVisible, setIsVisible] = useState(false);
+    useMotionValueEvent(opacity, "change", (latest) => {
+        setIsVisible(latest > 0.05);
+    });
 
     // ==========================================
     // NATURAL MEDIA TRANSFORMS (Images/Videos)
@@ -205,7 +191,25 @@ const ScrubbableContentBlock = ({
                 )}
             >
                 <div className="w-full h-full group hover:scale-[1.05] transition-transform duration-[1.5s] ease-out">
-                    {item.header}
+                    {isVisible && (
+                        item.media.type === "video" ? (
+                            <video
+                                src={item.media.src}
+                                className={cn("w-full h-full object-cover", item.media.className)}
+                                autoPlay
+                                muted
+                                loop
+                                playsInline
+                            />
+                        ) : (
+                            <Image
+                                src={item.media.src}
+                                alt={item.media.alt || ""}
+                                fill
+                                className={cn("object-cover", item.media.className)}
+                            />
+                        )
+                    )}
                 </div>
 
                 {/* Premium Overlays & Decorations */}
