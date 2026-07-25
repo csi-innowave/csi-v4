@@ -21,6 +21,7 @@
     "@react-three/rapier": "^2.2.0",
     "@tabler/icons-react": "^3.11.0",
     "class-variance-authority": "^0.7.0",
+    "cloudinary": "^2.10.0",
     "clsx": "^2.1.1",
     "csi-v3": "file:",
     "date-fns": "^4.1.0",

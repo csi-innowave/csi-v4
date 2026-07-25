@@ -78,10 +78,21 @@ export default function GalleryClient() {
 
   const fetchEvents = async () => {
     try {
+      const res = await fetch("/api/gallery");
+      if (res.ok) {
+        const data = await res.json();
+        if (data.images && data.images.length > 0) {
+          const liveImages = data.images.map(optimizeCloudinaryUrl);
+          setEventImages(liveImages);
+          return;
+        }
+      }
       const hardcodedImages = [...imagesOne, ...imagesTwo].map(optimizeCloudinaryUrl);
       setEventImages(hardcodedImages);
     } catch (error) {
-      console.error("Error loading images:", error);
+      console.error("Error loading live gallery images, falling back:", error);
+      const hardcodedImages = [...imagesOne, ...imagesTwo].map(optimizeCloudinaryUrl);
+      setEventImages(hardcodedImages);
     } finally {
       setLoading(false);
     }
