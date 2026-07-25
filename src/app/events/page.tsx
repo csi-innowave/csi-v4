@@ -1,5 +1,8 @@
-import { EventCard } from "@/components/landingPage/UpdateSection";
+import EventsClient from "./EventsClient";
 import { EventsDataType } from "@/types/EventData";
+import prisma from "@/lib/prisma";
+
+export const revalidate = 60; // revalidate page every 60 seconds
 
 export const metadata = {
     title: "Events - CSI V3 | Maharaja Agrasen Institute of Technology",
@@ -39,16 +42,17 @@ export const metadata = {
 };
 
 async function getEvents() {
-    const baseUrl = process.env.NODE_ENV === 'production' 
-        ? 'https://csiinnowave.com' 
-        : 'http://localhost:3000';
-    
-    let res = await fetch(`${baseUrl}/api/events`, {
-        cache: "force-cache",
-        next: { tags: ['events'], revalidate: 60 },
-    });
-    let post: EventsDataType[] = await res.json();
-    return post;
+    try {
+        const events = await prisma.event.findMany({
+            orderBy: {
+                eventDate: 'desc'
+            }
+        });
+        return JSON.parse(JSON.stringify(events)) as EventsDataType[];
+    } catch (error) {
+        console.error('Database Error:', error);
+        return [];
+    }
 }
 
 export default async function EventsPage() {
@@ -57,24 +61,8 @@ export default async function EventsPage() {
     if (!events) return <div>Loading...</div>;
 
     return (
-        <div>
-           <div className="font-bold relative text-[72px] text-center bg-gradient-to-b from-[rgba(29,51,9,0.99)] via-[#41d324ff] to-[#41d324ff] text-transparent bg-clip-text">
-
-                Events
-            </div>
-            <div className="mt-8 mx-4 flex  items-center justify-center">
-                {events.length > 0 ? (
-                    <div className="max-w-7xl grid grid-cols-2 md:grid-cols-4 gap-4 md:gap-8">
-                        {events.map((event) => (
-                            <EventCard key={event.id} event={event} index={1} />
-                        ))}
-                    </div>
-                ) : (
-                    <div className="text-xl text-gray-600">
-                        No events available
-                    </div>
-                )}
-            </div>
-        </div>
+        <main className="w-full flex flex-col items-center min-h-screen bg-[#111111]">
+            <EventsClient events={events} />
+        </main>
     );
 }

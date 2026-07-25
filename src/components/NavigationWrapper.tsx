@@ -197,14 +197,10 @@ export default function NavigationWrapper({ children }: { children: React.ReactN
           y: isMenuOpen ? 144 : 0,
           scale: isMenuOpen ? 0.85 : 1,
           skewY: isMenuOpen ? "-2deg" : "0deg",
-          filter: isMenuOpen ? "blur(4px) brightness(0.6)" : "blur(0px) brightness(1)",
+          borderRadius: isMenuOpen ? "1.5rem" : "0rem",
         }}
-        transition={{ type: "spring", stiffness: 200, damping: 30, delay: isMenuOpen ? 0.08 : 0 }}
-        className="fixed inset-0 z-[8] w-full h-full bg-blue-400 origin-bottom-left"
-        style={{
-          borderRadius: isMenuOpen ? "1.5rem" : "0",
-          transition: "border-radius 0.5s ease"
-        }}
+        transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1], delay: isMenuOpen ? 0.1 : 0 }}
+        className="fixed inset-0 z-[8] w-full h-full bg-blue-400 origin-bottom-left will-change-transform"
       />
       
       <motion.div
@@ -214,39 +210,33 @@ export default function NavigationWrapper({ children }: { children: React.ReactN
           y: isMenuOpen ? 147 : 0,
           scale: isMenuOpen ? 0.85 : 1,
           skewY: isMenuOpen ? "-2deg" : "0deg",
-          filter: isMenuOpen ? "blur(4px) brightness(0.6)" : "blur(0px) brightness(1)",
+          borderRadius: isMenuOpen ? "1.5rem" : "0rem",
         }}
-        transition={{ type: "spring", stiffness: 200, damping: 30, delay: isMenuOpen ? 0.04 : 0.04 }}
-        className="fixed inset-0 z-[9] w-full h-full bg-violet-500 origin-bottom-left"
-        style={{
-          borderRadius: isMenuOpen ? "1.5rem" : "0",
-          transition: "border-radius 0.5s ease"
-        }}
+        transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1], delay: isMenuOpen ? 0.05 : 0.05 }}
+        className="fixed inset-0 z-[9] w-full h-full bg-violet-500 origin-bottom-left will-change-transform"
       />
 
       {/* ── THE MAIN WEBSITE WRAPPER (3D Pushback) ── */}
       <motion.div
         initial={false}
         animate={{
-          // Scale down, shift left, add 3D perspective skew
           x: isMenuOpen ? "-30vw" : "0vw",
           y: isMenuOpen ? 150 : 0,
           scale: isMenuOpen ? 0.85 : 1,
           skewY: isMenuOpen ? "-2deg" : "0deg",
+          borderRadius: isMenuOpen ? "1.5rem" : "0rem",
         }}
         transition={{ 
-          type: "spring", 
-          stiffness: 200, 
-          damping: 30, 
-          mass: 1,
-          delay: isMenuOpen ? 0 : 0.08
+          duration: 0.8, 
+          ease: [0.32, 0.72, 0, 1],
+          delay: isMenuOpen ? 0 : 0.1
         }}
         onAnimationComplete={() => {
           if (!isMenuOpen) {
             setMenuFullyClosed(true);
           }
         }}
-        className="z-10 w-full bg-[#050505] origin-bottom-left"
+        className="z-10 w-full bg-[#050505] origin-bottom-left will-change-transform"
         style={{
           position: menuFullyClosed ? "relative" : "fixed",
           top: 0,
@@ -254,11 +244,6 @@ export default function NavigationWrapper({ children }: { children: React.ReactN
           height: menuFullyClosed ? "auto" : "100vh",
           minHeight: "100vh",
           overflow: menuFullyClosed ? "visible" : "hidden",
-          boxShadow: isMenuOpen 
-            ? "-40px 0 80px rgba(0,0,0,0.8), 0 0 60px rgba(0,0,0,0.5)" 
-            : "0 0 0 rgba(0,0,0,0)",
-          borderRadius: isMenuOpen ? "1.5rem" : "0",
-          transition: "box-shadow 0.5s ease, border-radius 0.5s ease"
         }}
       >
         {/* Floating Premium Hamburger Toggle */}
@@ -306,15 +291,17 @@ export default function NavigationWrapper({ children }: { children: React.ReactN
         
         {/* Render the rest of the site with translated scroll compensation */}
         <div style={{ transform: menuFullyClosed ? "none" : `translateY(-${savedScroll}px)` }}>
-          <motion.div
-            animate={{ 
-              filter: isMenuOpen ? "blur(4px) brightness(0.6)" : "blur(0px) brightness(1)",
-            }}
-            transition={{ duration: 0.5 }}
-            className={`transition-all duration-500 ${isMenuOpen ? "pointer-events-none select-none" : ""}`}
-          >
+          <div className={`relative ${isMenuOpen ? "pointer-events-none select-none" : ""}`}>
             {children}
-          </motion.div>
+            
+            {/* Highly performant opacity overlay to dim the site instead of expensive CSS blur filter */}
+            <motion.div
+                initial={false}
+                animate={{ opacity: isMenuOpen ? 0.6 : 0 }}
+                transition={{ duration: 0.8, ease: [0.32, 0.72, 0, 1] }}
+                className="absolute inset-0 bg-black z-50 pointer-events-none will-change-opacity"
+            />
+          </div>
         </div>
         
         {/* Click overlay to close menu */}

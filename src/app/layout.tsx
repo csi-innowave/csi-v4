@@ -7,6 +7,8 @@ import CursorTrail from "@/components/CursorTrail";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import ScrollThread from "@/components/ScrollThread";
 
+import PageOverlapWrapper from "@/components/PageOverlapWrapper";
+
 const inter = Inter({ subsets: ["latin"] });
 
 export default function RootLayout({
@@ -15,13 +17,15 @@ export default function RootLayout({
     children: React.ReactNode;
 }>) {
     return (
-        <html lang="en">
-            <body className={`bg-[#111111] text-white ${inter.className}`}>
+        <html lang="en" suppressHydrationWarning>
+            <body className={`bg-[#111111] text-white ${inter.className}`} suppressHydrationWarning>
                 <SmoothScrollProvider>
                     <ScrollThread />
                     <Noise />
                     <NavigationWrapper>
-                        {children}
+                        <PageOverlapWrapper>
+                            {children}
+                        </PageOverlapWrapper>
                         <Footer />
                     </NavigationWrapper>
                     <CursorTrail />

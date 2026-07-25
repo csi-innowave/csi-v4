@@ -101,26 +101,6 @@ export const people2: Person[] = [
     {
         id: 3,
         image_source:
-            "https://res.cloudinary.com/dmwkrlwik/image/upload/v1758195833/IMG-20250909-WA0116_qiyvza_5aeb62.jpg",
-        name: "Kashvi Sharma",
-        position: "Secretary",
-        links: {
-            linkedin: "https://www.linkedin.com/in/kashvi-sharma-27063523b/",
-        },
-    },
-    {
-        id: 4,
-        image_source:
-            "https://res.cloudinary.com/dbokcixdi/image/upload/v1758443965/WhatsApp_Image_2025-09-21_at_14.09.10_vuuvfg.jpg",
-        name: "Yash",
-        position: "Joint Secretary",
-        links: {
-            linkedin: "https://www.linkedin.com/in/yash243/",
-        },
-    },
-    {
-        id: 5,
-        image_source:
             "https://res.cloudinary.com/dmwkrlwik/image/upload/v1758196041/Nipun_unu254_b0991d.jpg",
         name: "Nipun Agrawal",
         position: "Treasurer",
@@ -129,7 +109,7 @@ export const people2: Person[] = [
         },
     },
     {
-        id: 6,
+        id: 4,
         image_source:
             "https://res.cloudinary.com/dmwkrlwik/image/upload/v1758195576/Pratham_Gupta_qht7c1.jpg",
         name: "Pratham Gupta",
@@ -137,7 +117,7 @@ export const people2: Person[] = [
         links: { linkedin: "https://www.linkedin.com/in/prathamgupta006/" },
     },
     {
-        id: 7,
+        id: 5,
         image_source:
             "https://res.cloudinary.com/dmwkrlwik/image/upload/v1758211274/Screenshot_2025-09-18_213054_f2tkwy.png",
         name: "Shubham Jha",
@@ -147,27 +127,7 @@ export const people2: Person[] = [
         },
     },
     {
-        id: 8,
-        image_source:
-            "https://res.cloudinary.com/dmwkrlwik/image/upload/v1758209858/Rishabh_final_2_toql10_98af6c.jpg",
-        name: "Rishabh Tripathi",
-        position: "PR Head",
-        links: {
-            linkedin: "https://www.linkedin.com/in/rishabh-tripathi-9985aa319/",
-        },
-    },
-    {
-        id: 9,
-        image_source:
-            "https://res.cloudinary.com/dmwkrlwik/image/upload/v1758197080/Niyati_zdq75z_34962e.jpg",
-        name: "Niyati Chugh",
-        position: "Event Management Co-Head",
-        links: {
-            linkedin: "https://www.linkedin.com/in/niyati-chugh-8098a1286/",
-        },
-    },
-    {
-        id: 10,
+        id: 6,
         image_source:
             "https://res.cloudinary.com/dmwkrlwik/image/upload/v1758197130/Dhruv_ypi5cm_a9a469.jpg",
         name: "Dhruv Mehra",
@@ -177,7 +137,7 @@ export const people2: Person[] = [
         },
     },
     {
-        id: 11,
+        id: 7,
         image_source:
             "https://res.cloudinary.com/dmwkrlwik/image/upload/v1758197164/Bhumi_t7ltp9_3e033e.webp",
         name: "Bhumi Rajbhar",
@@ -187,7 +147,7 @@ export const people2: Person[] = [
         },
     },
     {
-        id: 12,
+        id: 8,
         image_source:
             "https://res.cloudinary.com/dmwkrlwik/image/upload/v1758197212/liesha_gupta_pryso1_0ac19b.jpg",
         name: "Liesha Gupta",
@@ -197,7 +157,7 @@ export const people2: Person[] = [
         },
     },
     {
-        id: 13,
+        id: 9,
         image_source:
             "https://res.cloudinary.com/dmwkrlwik/image/upload/v1758196144/Ashwani_2_mn8spt_a066d0.jpg",
         name: "Ashwani Kumar",
@@ -207,7 +167,7 @@ export const people2: Person[] = [
         },
     },
     {
-        id: 14,
+        id: 10,
         image_source:
             "https://res.cloudinary.com/dmwkrlwik/image/upload/v1758197321/IMG-20250910-WA0068_zarlo6_be3469.jpg",
         name: "Parthsaarthie Sharma",
@@ -217,7 +177,7 @@ export const people2: Person[] = [
         },
     },
     {
-        id: 15,
+        id: 11,
         image_source:
             "https://res.cloudinary.com/dmwkrlwik/image/upload/v1758197265/lakshay_g3rfnf_2bd269.jpg",
         name: "Lakshay Gupta",
@@ -227,7 +187,7 @@ export const people2: Person[] = [
         },
     },
     {
-        id: 16,
+        id: 12,
         image_source:
             "https://res.cloudinary.com/dmwkrlwik/image/upload/v1758196524/Naveen_edited_damfmh.jpg",
         name: "Naveen Verma",
@@ -262,114 +222,13 @@ export const people3: Person[] = [
     },
     {
         id: 3,
-        image_source:
-            "https://res.cloudinary.com/drt5gi5mx/image/upload/v1722871010/Ansh_Malik-fotor-20240805203113_cvukvu.jpg",
-        name: "Ansh Malik",
+        image_source: "",
+        name: "Saksham Aggarwal",
         position: "Advisor",
         links: {
-            linkedin: "https://www.linkedin.com/in/ansh-malik-b476b0261/",
+            linkedin: "",
         },
-    },
-    {
-        id: 4,
-        image_source:
-            "https://res.cloudinary.com/drt5gi5mx/image/upload/v1722871022/Yash_Gupta-fotor-2024080520447_tmuw7q.jpg",
-        name: "Yash Gupta",
-        position: "Advisor",
-        links: {
-            linkedin: "https://www.linkedin.com/in/thisisyashgupta/",
-        },
-    },
-    {
-        id: 5,
-        image_source:
-            "https://res.cloudinary.com/drt5gi5mx/image/upload/v1722871023/Prajjwal_Sharma-fotor-20240805204020_q4dq1z.jpg",
-        name: "Prajjwal Sharma",
-        position: "Advisor",
-        links: {
-            linkedin: "https://www.linkedin.com/in/prajjwaldev/",
-        },
-    },
-    {
-        id: 6,
-        image_source:
-            "https://res.cloudinary.com/drt5gi5mx/image/upload/v1722871007/Aryan_Dutta-fotor-20240805203429_aqpw49.jpg",
-        name: "Aryan Dutta",
-        position: "Advisor",
-        links: {
-            linkedin: "https://www.linkedin.com/in/aryan-dutta-134b66257/",
-        },
-    },
-    {
-        id: 7,
-        image_source:
-            "https://res.cloudinary.com/drt5gi5mx/image/upload/v1722871021/Naman_Mangla-fotor-20240805203952_xkpys2.jpg",
-        name: "Naman Mangla",
-        position: "Advisor",
-        links: {
-            linkedin: "https://www.linkedin.com/in/naman-mangla-533aa9246/",
-        },
-    },
-    {
-        id: 8,
-        image_source:
-            "https://res.cloudinary.com/dbokcixdi/image/upload/v1758385745/joyal_p9ztey.jpg",
-        name: "Joyal Jijo",
-        position: "Advisor",
-        links: {
-            linkedin: "https://www.linkedin.com/in/joyal-jijo/",
-        },
-    },
-    {
-        id: 9,
-        image_source:
-            "https://res.cloudinary.com/dbokcixdi/image/upload/v1758442968/WhatsApp_Image_2025-09-21_at_13.46.49_ihk9md.jpg",
-        name: "Kumar Harsh",
-        position: "Advisor",
-        links: {
-            linkedin: "https://www.linkedin.com/in/kharsh560/",
-        },
-    },
-    {
-        id: 10,
-        image_source:
-            "https://res.cloudinary.com/dbokcixdi/image/upload/v1758385853/Aadarsh_axdu3k.jpg",
-        name: "Adarsh singh",
-        position: "Advisor",
-        links: {
-            linkedin: "https://www.linkedin.com/in/adarshsingh9540/",
-        },
-    },
-    {
-        id: 11,
-        image_source:
-            "https://res.cloudinary.com/dbokcixdi/image/upload/v1758442794/WhatsApp_Image_2025-09-21_at_13.46.48_jvzpsl.jpg",
-        name: "Ashish",
-        position: "Advisor",
-        links: {
-            linkedin: "https://www.linkedin.com/in/ashish-k-750815316/",
-        },
-    },
-    {
-        id: 12,
-        image_source:
-            "https://res.cloudinary.com/dbokcixdi/image/upload/v1758386009/ayan_b9mz4c.jpg",
-        name: "Ayan Gairola",
-        position: "Advisor",
-        links: {
-            linkedin: "https://www.linkedin.com/in/ayan-gairola-a18a59189/",
-        },
-    },
-    {
-        id: 13,
-        image_source:
-            "https://res.cloudinary.com/dbokcixdi/image/upload/v1758443067/WhatsApp_Image_2025-09-21_at_13.46.49_1_rwntyj.jpg",
-        name: "Parth Goel",
-        position: "Advisor",
-        links: {
-            linkedin: "https://www.linkedin.com/in/parth-goel-1208dg01/",
-        },
-    },
+    }
 ];
 
 export interface Department {
@@ -379,6 +238,29 @@ export interface Department {
 }
 
 export const executivesData: Department[] = [
+    {
+        name: "Research Team",
+        leads: [
+            {
+                name: "Kshitij Dahiya",
+                links: { linkedin: "" },
+            },
+            {
+                name: "Joyal Jijo",
+                links: { linkedin: "https://www.linkedin.com/in/joyal-jijo/" },
+            }
+        ],
+        people: [
+            {
+                name: "Pratham Gupta",
+                links: {
+                    linkedin: "https://www.linkedin.com/in/prathamgupta006/",
+                },
+            },
+            { name: "Ashish", links: { linkedin: "" } },
+            { name: "Vrishank Sharma", links: { linkedin: "" } },
+        ],
+    },
     {
         name: "Technical Team",
         leads: [
@@ -610,6 +492,10 @@ export const TechinalDeptData: TechnicalDepartment[] = [
                 name: "Joyal Jijo",
                 links: { linkedin: "https://www.linkedin.com/in/joyal-jijo/" },
             },
+            {
+                name: "Kshitij",
+                links: { linkedin: "" },
+            },
         ],
         people: [
             {
@@ -620,7 +506,6 @@ export const TechinalDeptData: TechnicalDepartment[] = [
             },
             { name: "Ashish", links: { linkedin: "" } },
             { name: "Vrishank Sharma", links: { linkedin: "" } },
-            { name: "Kshitij", links: { linkedin: "" } },
         ],
     },
     {

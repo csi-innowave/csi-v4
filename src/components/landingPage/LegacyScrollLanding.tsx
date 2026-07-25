@@ -4,12 +4,12 @@ import Image from "next/image";
 import { Instrument_Serif } from "next/font/google";
 import { motion, useScroll, useSpring, useTransform, MotionValue, useMotionValueEvent } from "framer-motion";
 import { cn } from "@/lib/utils";
-import { useRef, useState } from "react";
+import { useRef, useState, useEffect } from "react";
 
 const instrumentSerif = Instrument_Serif({
-  weight: "400",
-  subsets: ["latin"],
-  style: "italic",
+    weight: "400",
+    subsets: ["latin"],
+    style: "italic",
 });
 
 const items = [
@@ -105,26 +105,26 @@ const items = [
     },
 ];
 
-const ScrubbableContentBlock = ({ 
-    item, 
-    index, 
-    scrollYProgress, 
-    totalItems 
-}: { 
-    item: typeof items[0], 
-    index: number, 
-    scrollYProgress: MotionValue<number>, 
-    totalItems: number 
+const ScrubbableContentBlock = ({
+    item,
+    index,
+    scrollYProgress,
+    totalItems
+}: {
+    item: typeof items[0],
+    index: number,
+    scrollYProgress: MotionValue<number>,
+    totalItems: number
 }) => {
     const isEven = index % 2 === 0;
 
     // Mathematically calculate the scroll window for this specific item
     const chunk = 1 / totalItems;
     const start = index * chunk;
-    const enterEnd = start + chunk * 0.30; 
-    const exitStart = start + chunk * 0.70; 
+    const enterEnd = start + chunk * 0.30;
+    const exitStart = start + chunk * 0.70;
     const end = start + chunk;
-    
+
     // If this is the last item, we freeze it at the active state instead of letting it drop down
     const isLast = index === totalItems - 1;
     const val = (active: number, exit: number) => isLast ? active : exit;
@@ -188,29 +188,29 @@ const ScrubbableContentBlock = ({
     return (
         <motion.div
             style={{ opacity, pointerEvents: pointerEvents as any }}
-            className="absolute inset-0 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 px-6 md:px-12 py-4"
+            className="absolute inset-0 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 px-6 md:px-12 pt-4 pb-[200px] md:pb-[260px]"
         >
             {/* Media Block */}
-            <motion.div 
-                style={{ 
-                    x: mediaX, 
-                    y: mediaY, 
-                    rotate: mediaRotate, 
+            <motion.div
+                style={{
+                    x: mediaX,
+                    y: mediaY,
+                    rotate: mediaRotate,
                     scale: mediaScale,
-                    transformPerspective: 1200 
+                    transformPerspective: 1200
                 }}
                 className={cn(
-                    "relative w-full md:w-1/2 h-[40vh] md:h-[50vh] lg:h-[60vh] max-h-[500px] rounded-[2rem] overflow-hidden bg-[#0a0a0a] shadow-[0_0_50px_rgba(0,0,0,0.4)]",
+                    "relative w-full md:w-[55%] h-[40vh] md:h-[50vh] lg:h-[55vh] max-h-[480px] rounded-[2rem] overflow-hidden bg-[#0a0a0a] shadow-[0_0_50px_rgba(0,0,0,0.4)]",
                     isEven ? "md:order-1" : "md:order-2"
                 )}
             >
                 <div className="w-full h-full group hover:scale-[1.05] transition-transform duration-[1.5s] ease-out">
                     {item.header}
                 </div>
-                
+
                 {/* Premium Overlays & Decorations */}
                 <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[2rem] pointer-events-none z-10" />
-                
+
                 {/* Editorial Corner Crosshairs */}
                 <div className="absolute top-6 left-6 w-4 h-4 border-t-2 border-l-2 border-white/30 rounded-tl-sm pointer-events-none z-10" />
                 <div className="absolute top-6 right-6 w-4 h-4 border-t-2 border-r-2 border-white/30 rounded-tr-sm pointer-events-none z-10" />
@@ -219,14 +219,14 @@ const ScrubbableContentBlock = ({
             </motion.div>
 
             {/* Text Block */}
-            <motion.div 
-                style={{ 
-                    x: textX, 
-                    y: textY, 
-                    scale: textScale 
+            <motion.div
+                style={{
+                    x: textX,
+                    y: textY,
+                    scale: textScale
                 }}
                 className={cn(
-                    "w-full md:w-1/2 flex flex-col justify-center relative z-10",
+                    "w-full md:w-[40%] flex flex-col justify-center relative z-10",
                     isEven ? "md:order-2 md:pl-16 lg:pl-24 items-start text-left" : "md:order-1 md:pr-16 lg:pr-24 items-end text-right"
                 )}
             >
@@ -254,7 +254,7 @@ const ScrubbableContentBlock = ({
                     <h3 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-4 md:mb-6 uppercase leading-[1.1] bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent drop-shadow-xl">
                         {item.title}
                     </h3>
-                    
+
                     <p className="text-white/50 text-sm md:text-base lg:text-lg leading-relaxed max-w-sm md:max-w-md font-light">
                         {item.description}
                     </p>
@@ -266,11 +266,26 @@ const ScrubbableContentBlock = ({
 
 export default function LegacyScrollLanding() {
     const containerRef = useRef<HTMLDivElement>(null);
-    const { scrollYProgress } = useScroll({ 
-        target: containerRef, 
-        offset: ["start start", "end end"] 
+    const [footerHeight, setFooterHeight] = useState(250);
+
+    useEffect(() => {
+        const handleResize = () => {
+            if (window.innerWidth < 768) {
+                setFooterHeight(350);
+            } else {
+                setFooterHeight(250);
+            }
+        };
+        handleResize();
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
+
+    const { scrollYProgress } = useScroll({
+        target: containerRef,
+        offset: ["start start", "end end"]
     });
-    
+
     // Extremely smooth, slow physics for the content blocks
     const smoothProgress = useSpring(scrollYProgress, {
         stiffness: 60,
@@ -279,38 +294,42 @@ export default function LegacyScrollLanding() {
         restDelta: 0.001
     });
 
-    const activeIndexTransform = useTransform(smoothProgress, (latest) => {
+    const smoothProgressMapped = useTransform(smoothProgress, [0, 0.9], [0, 1]);
+
+    const activeIndexTransform = useTransform(smoothProgressMapped, (latest) => {
         const chunks = items.length;
         let index = Math.round(latest * (chunks - 1));
         return Math.max(0, Math.min(index, chunks - 1));
     });
 
     return (
-        <section ref={containerRef} className="w-full relative z-20 bg-[#111111]" style={{ height: `${items.length * 120}vh` }}>
+        <section ref={containerRef} className="w-full relative z-20 bg-[#111111]" style={{ height: `calc(${items.length * 120}vh + ${footerHeight}px)` }}>
             <div className="sticky top-0 w-full h-screen overflow-hidden flex flex-col pt-4 md:pt-8">
 
                 {/* Massive Premium Background Decorations */}
-                
+
                 {/* 1. Subtle Technical Grid Overlay */}
                 <div className="absolute inset-0 z-0 opacity-[0.03] pointer-events-none" style={{ backgroundImage: 'linear-gradient(#ffffff 1px, transparent 1px), linear-gradient(90deg, #ffffff 1px, transparent 1px)', backgroundSize: '100px 100px' }} />
 
                 {/* 2. Huge Hollow Vertical Watermark (Left Edge) */}
-                <div 
+                <div
                     className="absolute top-1/2 left-0 -translate-x-[35%] -translate-y-1/2 -rotate-90 text-[10rem] md:text-[16rem] lg:text-[20rem] font-bold text-transparent select-none pointer-events-none z-0 tracking-tighter whitespace-nowrap opacity-30 hidden md:block"
                     style={{ WebkitTextStroke: '2px rgba(139, 92, 246, 0.5)' }}
                 >
                     LEGACY
                 </div>
-                
+
                 {/* Sidebar Tracker */}
-                <div className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-4">
+                <div className="absolute right-4 md:right-8 top-1/2 -translate-y-1/2 z-40 hidden lg:flex flex-col gap-4 items-end">
+                    {/* Vertical line behind dots */}
+                    <div className="absolute right-[1px] top-2 bottom-2 w-[1px] bg-white/[0.08] pointer-events-none z-0" />
                     {items.map((_, i) => (
                         <SidebarDot key={i} index={i} activeIndexTransform={activeIndexTransform} />
                     ))}
                 </div>
-                
-                <motion.div 
-                    animate={{ 
+
+                <motion.div
+                    animate={{
                         scale: [1, 1.3, 1],
                         opacity: [0.2, 0.4, 0.2]
                     }}
@@ -319,10 +338,8 @@ export default function LegacyScrollLanding() {
                         repeat: Infinity,
                         ease: "easeInOut"
                     }}
-                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] md:w-[800px] h-[500px] bg-violet-700/20 blur-[150px] rounded-full pointer-events-none z-0" 
+                    className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[500px] md:w-[800px] h-[500px] bg-violet-700/20 blur-[150px] rounded-full pointer-events-none z-0"
                 />
-                
-                <div className="absolute inset-0 bg-[radial-gradient(ellipse_at_center,transparent_0%,#111111_85%)] pointer-events-none z-0" />
 
                 {/* Fixed Pinned Header - Split Layout */}
                 <div className="relative z-20 w-full max-w-7xl mx-auto px-6 md:px-12 flex flex-col md:flex-row items-start md:items-end justify-between shrink-0 min-h-[80px] md:min-h-[100px] gap-6">
@@ -332,7 +349,7 @@ export default function LegacyScrollLanding() {
                         <div className="absolute -top-16 -left-8 text-[8rem] font-bold text-white/[0.015] pointer-events-none select-none z-0 tracking-tighter hidden lg:block">
                             07
                         </div>
-                        
+
                         <motion.div
                             initial={{ opacity: 0, x: -20 }}
                             animate={{ opacity: 1, x: 0 }}
@@ -344,8 +361,8 @@ export default function LegacyScrollLanding() {
                             </h2>
                             <div className="h-[1px] w-12 md:w-32 bg-gradient-to-r from-violet-500/60 via-violet-500/10 to-transparent" />
                         </motion.div>
-                        
-                        <motion.h3 
+
+                        <motion.h3
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1, delay: 0.1, ease: "easeOut" }}
@@ -365,7 +382,7 @@ export default function LegacyScrollLanding() {
                         <div className="relative pl-5 md:pl-0 md:pr-6 md:border-r border-l md:border-l-0 border-white/10 py-1">
                             {/* Premium glowing accent on the border */}
                             <div className="absolute top-0 left-[-1px] md:left-auto md:right-[-1px] w-[2px] h-10 bg-gradient-to-b from-violet-400 to-transparent" />
-                            
+
                             {/* Faded decorative quotation mark */}
                             <div className={`${instrumentSerif.className} absolute -top-6 -left-3 md:left-auto md:-top-6 md:-right-2 text-6xl text-white/[0.03] select-none pointer-events-none`}>
                                 &quot;
@@ -378,13 +395,13 @@ export default function LegacyScrollLanding() {
                     </motion.div>
                 </div>
 
-                <div className="relative z-20 flex-1 w-full max-w-7xl mx-auto mt-4 md:mt-8">
+                <div className="relative z-20 flex-1 w-full max-w-7xl mx-auto mt-48 md:mt-72">
                     {items.map((item, index) => (
-                        <ScrubbableContentBlock 
-                            key={index} 
-                            item={item} 
-                            index={index} 
-                            scrollYProgress={smoothProgress}
+                        <ScrubbableContentBlock
+                            key={index}
+                            item={item}
+                            index={index}
+                            scrollYProgress={smoothProgressMapped}
                             totalItems={items.length}
                         />
                     ))}
@@ -411,8 +428,8 @@ const SidebarDot = ({ index, activeIndexTransform }: { index: number, activeInde
             </span>
             <div className={cn(
                 "w-[2px] rounded-full transition-all duration-500 ease-[cubic-bezier(0.16,1,0.3,1)]",
-                isActive 
-                    ? "h-8 bg-white shadow-[0_0_12px_rgba(255,255,255,0.6)]" 
+                isActive
+                    ? "h-8 bg-white shadow-[0_0_12px_rgba(255,255,255,0.6)]"
                     : "h-3 bg-white/20 group-hover:bg-white/50 group-hover:h-5"
             )} />
         </div>
