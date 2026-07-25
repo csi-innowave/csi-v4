@@ -11,7 +11,7 @@ cloudinary.config({
 export async function GET(request: Request) {
   try {
     const { searchParams } = new URL(request.url);
-    const folder = searchParams.get('folder') || process.env.CLOUDINARY_FOLDER || 'gallery';
+    const folder = searchParams.get('folder') || process.env.CLOUDINARY_FOLDER || 'Gallery';
 
     // Verify credentials
     if (!process.env.CLOUDINARY_API_KEY || !process.env.CLOUDINARY_API_SECRET) {
@@ -24,7 +24,7 @@ export async function GET(request: Request) {
     const result = await cloudinary.search
       .expression(`folder:${folder}* AND resource_type:image`)
       .sort_by('created_at', 'desc')
-      .max_results(100)
+      .max_results(500)
       .execute();
 
     const imageUrls = result.resources.map((resource: any) => resource.secure_url);
