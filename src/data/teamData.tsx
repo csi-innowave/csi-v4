@@ -292,6 +292,10 @@ export const executivesData: Department[] = [
         ],
         people: [
             {
+                name: "Kalash Maheshwari",
+                links: { linkedin: "https://www.linkedin.com/in/kalash-maheshwari-7143b0372/" },
+            },
+            {
                 name: "Akshit Malia",
                 links: { linkedin: "https://www.linkedin.com/in/akshit-malia-6b35b0256/" },
             },
@@ -321,10 +325,6 @@ export const executivesData: Department[] = [
             },
             {
                 name: "Som Kashyap",
-                links: { linkedin: "" },
-            },
-            {
-                name: "Kalash Maheshwari",
                 links: { linkedin: "" },
             },
             {
