@@ -21,35 +21,62 @@ const spaceGrotesk = Space_Grotesk({
 
 const GalleryImage = ({ imageUrl, index, setLightboxIndex }: { imageUrl: string, index: number, setLightboxIndex: (index: number) => void }) => {
   const [isLoaded, setIsLoaded] = useState(false);
+  const [isInView, setIsInView] = useState(false);
+  const [aspectRatio, setAspectRatio] = useState<number>(4 / 3);
+  const cardRef = useRef<HTMLDivElement>(null);
 
-  // Generate a stable pseudo-random height for the skeleton based on the index to simulate masonry
-  const placeholderHeight = 250 + (index % 3) * 60 + (index % 5) * 30;
+  useEffect(() => {
+    const el = cardRef.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        setIsInView(entry.isIntersecting);
+      },
+      { rootMargin: '500px 0px 500px 0px' }
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
 
   return (
     <div 
-      className="mb-6 w-full md:cursor-none group relative" 
+      ref={cardRef}
+      className="mb-4 md:mb-6 w-full md:cursor-none group relative" 
       onClick={() => setLightboxIndex(index)}
     >
       <div 
         className="relative w-full bg-[#0a0a0a] rounded-xl overflow-hidden shadow-lg border border-white/[0.04] transition-all duration-500 ease-[cubic-bezier(0.23,1,0.32,1)] group-hover:border-violet-500/40 group-hover:-translate-y-1 group-hover:shadow-2xl group-hover:shadow-violet-500/10"
-        style={{ height: isLoaded ? 'auto' : `${placeholderHeight}px`, contain: 'content' }}
+        style={{ aspectRatio: `${aspectRatio}`, contain: 'content' }}
       >
-          {!isLoaded && (
-              <div className="absolute inset-0 bg-white/5 animate-pulse" />
-          )}
-
-          {/* eslint-disable-next-line @next/next/no-img-element */}
-          <img 
+        {isInView ? (
+          <>
+            {!isLoaded && <div className="absolute inset-0 bg-white/5 animate-pulse" />}
+            {/* eslint-disable-next-line @next/next/no-img-element */}
+            <img 
               src={imageUrl} 
               alt={`Gallery image ${index + 1}`}
               loading="lazy"
               decoding="async"
-              className={`w-full opacity-80 group-hover:opacity-100 transition-all duration-500 ease-out group-hover:scale-[1.03] object-cover ${isLoaded ? 'h-auto blur-0' : 'h-0 blur-md text-transparent'}`}
-              onLoad={() => setIsLoaded(true)}
-              onError={(e) => {
-                  (e.target as HTMLImageElement).style.display = 'none';
+              className={`w-full h-full object-cover transition-all duration-500 ease-out group-hover:scale-[1.03] ${
+                isLoaded ? 'opacity-80 group-hover:opacity-100 blur-0' : 'opacity-0 blur-md'
+              }`}
+              onLoad={(e) => {
+                setIsLoaded(true);
+                const img = e.currentTarget;
+                if (img.naturalWidth && img.naturalHeight) {
+                  setAspectRatio(img.naturalWidth / img.naturalHeight);
+                }
               }}
-          />
+              onError={(e) => {
+                (e.target as HTMLImageElement).style.display = 'none';
+              }}
+            />
+          </>
+        ) : (
+          <div className="w-full h-full bg-white/[0.02]" />
+        )}
       </div>
     </div>
   );
@@ -59,7 +86,7 @@ export default function GalleryClient() {
   const [eventImages, setEventImages] = useState<string[]>([]);
   const [loading, setLoading] = useState(true);
   const [lightboxIndex, setLightboxIndex] = useState(-1);
-  const [visibleCount, setVisibleCount] = useState(15);
+  const [visibleCount, setVisibleCount] = useState(60);
   const loadMoreRef = useRef<HTMLDivElement>(null);
   
   // Custom cursor & Spotlight refs
@@ -113,9 +140,9 @@ export default function GalleryClient() {
     
     const observer = new IntersectionObserver((entries) => {
       if (entries[0].isIntersecting) {
-        setVisibleCount((prev) => Math.min(prev + 12, eventImages.length));
+        setVisibleCount((prev) => Math.min(prev + 60, eventImages.length));
       }
-    }, { rootMargin: '400px' });
+    }, { rootMargin: '600px' });
     
     observer.observe(loadMoreRef.current);
     
@@ -162,7 +189,37 @@ export default function GalleryClient() {
     };
   }, []);
 
+  const [columnCount, setColumnCount] = useState(3);
+
+  useEffect(() => {
+    const updateColumns = () => {
+      if (window.innerWidth < 640) {
+        setColumnCount(1);
+      } else if (window.innerWidth < 1024) {
+        setColumnCount(2);
+      } else {
+        setColumnCount(3);
+      }
+    };
+    updateColumns();
+    window.addEventListener('resize', updateColumns);
+    return () => window.removeEventListener('resize', updateColumns);
+  }, []);
+
   const visibleImages = eventImages.slice(0, visibleCount);
+
+  const columns = React.useMemo(() => {
+    const cols: { url: string; originalIndex: number }[][] = Array.from(
+      { length: columnCount },
+      () => []
+    );
+
+    visibleImages.forEach((url, i) => {
+      cols[i % columnCount].push({ url, originalIndex: i });
+    });
+
+    return cols;
+  }, [visibleImages, columnCount]);
 
   // Parallax scroll effects for the floating hero images
   const { scrollY } = useScroll();
@@ -311,30 +368,26 @@ export default function GalleryClient() {
                 </div>
               ) : (
                 <>
-                  {/* Stable DOM Masonry mimicking Pinterest using actual column flexboxes */}
+                  {/* Stable DOM Masonry with dynamic column balancing and viewport memory management */}
                   <div 
-                    className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-3 gap-4 md:gap-6 md:cursor-none relative z-10"
+                    className={`grid gap-4 md:gap-6 md:cursor-none relative z-10 ${
+                      columnCount === 1 ? 'grid-cols-1' : columnCount === 2 ? 'grid-cols-2' : 'grid-cols-3'
+                    }`}
                     onMouseEnter={() => setIsHoveringGrid(true)}
                     onMouseLeave={() => setIsHoveringGrid(false)}
                   >
-                    {/* Column 1 */}
-                    <div className="flex flex-col gap-0">
-                      {visibleImages.filter((_, i) => i % 3 === 0).map((imageUrl, index) => (
-                        <GalleryImage key={imageUrl + (index * 3)} imageUrl={imageUrl} index={index * 3} setLightboxIndex={setLightboxIndex} />
-                      ))}
-                    </div>
-                    {/* Column 2 */}
-                    <div className="flex flex-col gap-0 hidden sm:flex">
-                      {visibleImages.filter((_, i) => i % 3 === 1).map((imageUrl, index) => (
-                        <GalleryImage key={imageUrl + (index * 3 + 1)} imageUrl={imageUrl} index={index * 3 + 1} setLightboxIndex={setLightboxIndex} />
-                      ))}
-                    </div>
-                    {/* Column 3 */}
-                    <div className="flex flex-col gap-0 hidden lg:flex">
-                      {visibleImages.filter((_, i) => i % 3 === 2).map((imageUrl, index) => (
-                        <GalleryImage key={imageUrl + (index * 3 + 2)} imageUrl={imageUrl} index={index * 3 + 2} setLightboxIndex={setLightboxIndex} />
-                      ))}
-                    </div>
+                    {columns.map((colItems, colIdx) => (
+                      <div key={colIdx} className="flex flex-col gap-0">
+                        {colItems.map(({ url, originalIndex }) => (
+                          <GalleryImage 
+                            key={url + originalIndex} 
+                            imageUrl={url} 
+                            index={originalIndex} 
+                            setLightboxIndex={setLightboxIndex} 
+                          />
+                        ))}
+                      </div>
+                    ))}
                   </div>
                   
                   {visibleCount < eventImages.length && (

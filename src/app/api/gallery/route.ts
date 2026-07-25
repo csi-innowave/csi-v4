@@ -20,14 +20,26 @@ export async function GET(request: Request) {
       }, { status: 400 });
     }
 
-    // Search for images inside specified folder
-    const result = await cloudinary.search
-      .expression(`folder:${folder}* AND resource_type:image`)
-      .sort_by('created_at', 'desc')
-      .max_results(500)
-      .execute();
+    // Search for images inside specified folder with full pagination
+    let allResources: any[] = [];
+    let nextCursor: string | undefined = undefined;
 
-    const imageUrls = result.resources.map((resource: any) => resource.secure_url);
+    do {
+      let query = cloudinary.search
+        .expression(`folder:${folder}* AND resource_type:image`)
+        .sort_by('created_at', 'desc')
+        .max_results(500);
+
+      if (nextCursor) {
+        query = query.next_cursor(nextCursor);
+      }
+
+      const result = await query.execute();
+      allResources = allResources.concat(result.resources || []);
+      nextCursor = result.next_cursor;
+    } while (nextCursor);
+
+    const imageUrls = allResources.map((resource: any) => resource.secure_url);
 
     return NextResponse.json({ images: imageUrls });
   } catch (error: any) {
