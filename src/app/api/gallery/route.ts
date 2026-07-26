@@ -26,7 +26,7 @@ export async function GET(request: Request) {
 
     do {
       let query = cloudinary.search
-        .expression(`folder:${folder}* AND resource_type:image`)
+        .expression(`(folder:${folder}* OR folder:events* OR folder:csi/events*) AND resource_type:image`)
         .sort_by('created_at', 'desc')
         .max_results(500);
 

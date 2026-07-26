@@ -91,8 +91,8 @@ export default function Footer() {
 
                     {/* Pill Buttons */}
                     <div className="flex flex-col sm:flex-row gap-4">
-                        <Link href="https://www.youtube.com/@CSI-Innowave" target="_blank" className={`${spaceGrotesk.className} bg-violet-600 hover:bg-violet-500 text-white px-6 py-2.5 rounded-full flex items-center gap-3 font-semibold text-sm transition-all hover:scale-105 shadow-[0_0_20px_rgba(139,92,246,0.3)]`}>
-                            Subscribe on YouTube <span className="bg-white text-violet-600 rounded-full p-1"><FaArrowRight size={10} /></span>
+                        <Link href="https://www.instagram.com/mait_csi_innowave/" target="_blank" className={`${spaceGrotesk.className} bg-violet-600 hover:bg-violet-500 text-white px-6 py-2.5 rounded-full flex items-center gap-3 font-semibold text-sm transition-all hover:scale-105 shadow-[0_0_20px_rgba(139,92,246,0.3)]`}>
+                            Follow on Instagram <span className="bg-white text-violet-600 rounded-full p-1"><FaArrowRight size={10} /></span>
                         </Link>
                         <Link href="#" target="_blank" className={`${spaceGrotesk.className} border border-violet-500/50 text-violet-400 hover:bg-violet-500/10 px-6 py-2.5 rounded-full flex items-center gap-3 font-semibold text-sm transition-transform hover:scale-105`}>
                             Join Community <span className="bg-violet-500/20 text-violet-400 rounded-full p-1"><FaArrowRight size={10} /></span>
