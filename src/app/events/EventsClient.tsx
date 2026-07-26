@@ -122,8 +122,8 @@ export default function EventsClient({ events }: { events: EventsDataType[] }) {
                         <span className={`${spaceGrotesk.className} text-xs uppercase tracking-[0.15em] text-[#ececf1] font-medium`}>CSI INNOWAVE</span>
                     </div>
                     <div className="text-right">
-                        <span className={`${spaceGrotesk.className} text-[10px] uppercase tracking-[0.3em] text-[#a1a1aa] block mb-2 font-light`}>Volume 01</span>
-                        <span className={`${spaceGrotesk.className} text-xs uppercase tracking-[0.15em] text-[#ececf1] font-medium`}>{events.length} Entries</span>
+                        <span className={`${spaceGrotesk.className} text-[10px] uppercase tracking-[0.3em] text-[#a1a1aa] block mb-2 font-light`}>Archive</span>
+                        <span className={`${spaceGrotesk.className} text-xs uppercase tracking-[0.15em] text-[#ececf1] font-medium`}>{events.length} Events</span>
                     </div>
                 </div>
 
@@ -216,27 +216,18 @@ export default function EventsClient({ events }: { events: EventsDataType[] }) {
                         <span className={`${spaceGrotesk.className} text-xs tracking-[0.15em] uppercase text-white/90 font-medium`}>Featured</span>
                     </div>
                     <div className="hidden md:block col-span-6 text-center self-end">
-                        <span className={`${instrumentSerif.className} text-2xl text-[#a1a1aa] italic tracking-wide`}>The Latest Entry</span>
+                        <span className={`${instrumentSerif.className} text-2xl text-[#a1a1aa] italic tracking-wide`}>The Latest Event</span>
                     </div>
                     <div className="col-span-6 md:col-span-3 text-right">
-                        <span className={`${spaceGrotesk.className} text-[10px] tracking-[0.3em] uppercase text-white/40 block mb-2 font-light`}>Index</span>
-                        <span className={`${spaceGrotesk.className} text-xs tracking-[0.15em] uppercase text-white/90 font-medium`}>01 / {events.length < 10 ? `0${events.length}` : events.length}</span>
+                        <span className={`${spaceGrotesk.className} text-[10px] tracking-[0.3em] uppercase text-white/40 block mb-2 font-light`}>Status</span>
+                        <span className={`${spaceGrotesk.className} text-xs tracking-[0.15em] uppercase text-white/90 font-medium`}>Featured</span>
                     </div>
                 </div>
                 
-                <div className="relative z-10 grid grid-cols-1 lg:grid-cols-12 gap-12 lg:gap-20 items-center">
-                    <div className="lg:col-span-5 flex lg:justify-center lg:pr-10 relative">
-                        <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[120%] h-[120%] border border-white/[0.02] rounded-full border-dashed animate-[spin_40s_linear_infinite]" />
-                        <span className={`${instrumentSerif.className} text-[14rem] md:text-[20rem] leading-[0.8] text-white/[0.03] tracking-tighter select-none z-10`}>
-                            01
-                        </span>
-                    </div>
-
-                    <div className="lg:col-span-7 relative w-full group">
-                        <div className="absolute -inset-8 bg-[radial-gradient(ellipse_at_center,rgba(107,70,193,0.15),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 rounded-full blur-3xl pointer-events-none" />
-                <div className="relative transition-transform duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.02]">
-                            <PremiumEventCard event={featuredEvent} index={0} isFeatured={true} />
-                        </div>
+                <div className="relative z-10 w-full max-w-[1200px] mx-auto group">
+                    <div className="absolute -inset-8 bg-[radial-gradient(ellipse_at_center,rgba(107,70,193,0.15),transparent_70%)] opacity-0 group-hover:opacity-100 transition-opacity duration-1000 rounded-full blur-3xl pointer-events-none" />
+                    <div className="relative transition-transform duration-[1.5s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:scale-[1.01]">
+                        <PremiumEventCard event={featuredEvent} index={0} isFeatured={true} />
                     </div>
                 </div>
             </section>
@@ -301,19 +292,8 @@ export default function EventsClient({ events }: { events: EventsDataType[] }) {
                                 index % 3 === 1 ? 'lg:mt-16' : 
                                 index % 3 === 2 ? 'lg:mt-32' : ''; 
                             
-                            const displayIndex = index + 2;
-                            const formattedIndex = displayIndex < 10 ? `0${displayIndex}` : displayIndex;
-                            
                             return (
                                 <div key={event.id} className={`relative group ${offsetClass}`}>
-                                    {/* Hover Index Badge */}
-                                    <div className="absolute -top-8 left-0 z-20 opacity-0 group-hover:opacity-100 transition-all duration-700 transform group-hover:-translate-y-1 flex items-center gap-3">
-                                        <span className="w-6 h-[1px] bg-white/40" />
-                                        <span className={`${spaceGrotesk.className} text-[10px] tracking-[0.4em] text-[#d4d4d8] uppercase font-light`}>
-                                            Entry {formattedIndex}
-                                        </span>
-                                    </div>
-                                    
                                     <div className="transition-transform duration-[1.2s] ease-[cubic-bezier(0.16,1,0.3,1)] group-hover:-translate-y-2">
                                         <PremiumEventCard event={event} index={index + 1} />
                                     </div>
