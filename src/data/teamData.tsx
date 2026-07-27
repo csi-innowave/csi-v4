@@ -199,7 +199,7 @@ export const people2: Person[] = [
     {
         id: 13,
         image_source:
-            "https://res.cloudinary.com/dpp2rltxx/image/upload/v1/csi/team/Kshitij_Dahiya_rx5hro.jpg",
+            "https://res.cloudinary.com/dpp2rltxx/image/upload/v1785138431/csi/team/Kshitij_Dahiya_rx5hro.jpg",
         name: "Kshitij Dahiya",
         position: "Research Head",
         links: {
@@ -253,7 +253,7 @@ export const executivesData: Department[] = [
         leads: [
             {
                 name: "Kshitij Dahiya",
-                image_source: "https://res.cloudinary.com/dpp2rltxx/image/upload/v1/csi/team/Kshitij_Dahiya_rx5hro.jpg",
+                image_source: "https://res.cloudinary.com/dpp2rltxx/image/upload/v1785138431/csi/team/Kshitij_Dahiya_rx5hro.jpg",
                 links: { linkedin: "" },
             },
             {
