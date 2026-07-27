@@ -7,6 +7,7 @@ import EventDetailsDialog from "../EventDetailsDialog";
 import { CalendarIcon, ClockIcon, GlobeIcon, MapPinIcon, ArrowRightIcon } from "lucide-react";
 import { unstable_noStore as noStore } from "next/cache";
 import { motion } from "framer-motion";
+import { GlowingCard } from "../ui/GlowingCard";
 
 function formatDate(isoString: Date): string {
     const date: Date = new Date(isoString);
@@ -138,11 +139,12 @@ export function EventCard({
                 activeEvent={activeEvent}
             />
 
-            <div
-                className="group relative flex flex-col bg-[#111111] rounded-xl overflow-hidden cursor-pointer transition-all duration-500 border border-white/[0.05] hover:border-white/40 hover:-translate-y-2 hover:shadow-[0_10px_40px_rgba(16,185,129,0.1)]"
-                onClick={() => handleOpenDialog(event)}
-            >
-                <div className="relative w-full aspect-[4/3] overflow-hidden">
+            <div onClick={() => handleOpenDialog(event)} className="h-full">
+                <GlowingCard
+                    className="h-full group cursor-pointer hover:-translate-y-2 transition-transform duration-500"
+                    innerClassName="flex flex-col overflow-hidden h-full"
+                >
+                    <div className="relative w-full aspect-[4/3] overflow-hidden">
                     <div className="absolute inset-0 bg-black/40 group-hover:bg-transparent transition-colors duration-500 z-10" />
                     <Image
                         src={event.banner}
@@ -189,6 +191,7 @@ export function EventCard({
                         </div>
                     </div>
                 </div>
+                </GlowingCard>
             </div>
         </motion.div>
     );

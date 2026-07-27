@@ -114,7 +114,7 @@ export default function HeroAnimated() {
 
                 {/* Text layer */}
                 <motion.div
-                    className="absolute inset-0 z-10 flex flex-col justify-between pt-32 pb-12 px-4 md:px-12 pointer-events-none"
+                    className="absolute inset-0 z-10 flex flex-col justify-between pt-32 pb-12 px-4 md:px-12 pointer-events-none mix-blend-lighten"
                 >
                     <motion.div
                         variants={containerVariants}
@@ -195,28 +195,26 @@ export default function HeroAnimated() {
                             </motion.div>
 
                             {/* Row 2: INNOWAVE (Right Aligned - scales without fading!) */}
-                            <div className="flex justify-end w-full mt-2 md:mt-1 overflow-hidden pb-6 pr-8 -mr-8">
-                                <motion.div variants={textReveal}>
-                                    <motion.h1
-                                        animate={{
-                                            backgroundPosition: ["0% 0%", "100% 100%", "0% 0%"]
-                                        }}
-                                        transition={{
-                                            duration: 30,
-                                            ease: "linear",
-                                            repeat: Infinity
-                                        }}
-                                        className="text-[18vw] md:text-[15vw] font-black tracking-[-0.06em] leading-[0.85] bg-clip-text text-transparent inline-block pr-4"
+                            <div className="relative flex justify-end w-full mt-2 md:mt-1 overflow-hidden pb-6 pr-8 -mr-8 bg-black">
+                                {/* The Animating White Text */}
+                                <motion.div variants={textReveal} className="relative z-10 w-full flex justify-end">
+                                    <h1
+                                        className="text-[18vw] md:text-[15vw] font-black tracking-[-0.06em] leading-[0.85] text-white inline-block pr-4"
                                         style={{
-                                            backgroundImage: "linear-gradient(rgba(0,0,0,0.3), rgba(0,0,0,0.3)), url('/textfill.jpg')",
-                                            backgroundSize: "150% 150%",
-                                            WebkitTextFillColor: "transparent", // Safari fix
                                             WebkitTextStroke: "1px rgba(255, 255, 255, 0.25)",
                                         }}
                                     >
                                         INNOWAVE
-                                    </motion.h1>
+                                    </h1>
                                 </motion.div>
+                                
+                                {/* Video Multiplied over the Text */}
+                                {/* multiply(white, video) = video, multiply(black, video) = black */}
+                                <video 
+                                    src="/textfill.mp4" 
+                                    autoPlay loop muted playsInline 
+                                    className="absolute inset-0 w-full h-full object-cover z-20 mix-blend-multiply pointer-events-none" 
+                                />
                             </div>
                         </div>
                     </motion.div>

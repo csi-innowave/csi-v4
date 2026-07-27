@@ -131,7 +131,7 @@ export const people2: Person[] = [
         image_source:
             "https://res.cloudinary.com/dmwkrlwik/image/upload/v1758197130/Dhruv_ypi5cm_a9a469.jpg",
         name: "Dhruv Mehra",
-        position: "Event Management Co-Head",
+        position: "Event Management Head",
         links: {
             linkedin: "https://www.linkedin.com/in/dhruv-mehra-1b2742315/",
         },
@@ -232,7 +232,8 @@ export const people3: Person[] = [
     },
     {
         id: 3,
-        image_source: "",
+        image_source:
+            "https://res.cloudinary.com/dpp2rltxx/image/upload/v1785167884/csi/team/Saksham_Aggarwal.jpg",
         name: "Saksham Aggarwal",
         position: "Advisor",
         links: {
