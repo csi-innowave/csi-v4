@@ -7,7 +7,7 @@ import { MeshLineGeometry, MeshLineMaterial } from 'meshline';
 
 // replaced with public folder string paths
 const cardGLB = '/card.glb';
-const lanyard = '/lanyard.png';
+const lanyard = '/Lanyard.png';
 
 import * as THREE from 'three';
 import './Lanyard.css';
