@@ -16,11 +16,11 @@ export const people1: Person[] = [
     {
         id: 1,
         image_source:
-            "https://res.cloudinary.com/dpp2rltxx/image/upload/v1709131248/csi/team/llgn4s6xwckilkumschq.png",
-        name: "Prof. Neelam Sharma",
+            "https://res.cloudinary.com/dpp2rltxx/image/upload/v1709131248/csi/team/llgn4s6xwckilkumschq.jpg",
+        name: "Prof. (Dr.) Vikram Bali",
         position: "Patron",
         links: {
-            linkedin: "https://in.linkedin.com/in/prof-neelam-sharma-291792257",
+            linkedin: "",
         },
     },
     {
@@ -67,7 +67,7 @@ export const people1: Person[] = [
     {
         id: 6,
         image_source:
-            "https://res.cloudinary.com/dfhj4i9hd/image/upload/v1716394844/CSI%20Website/Team/dkafmzugaexyltcxcjrb.png",
+            "https://res.cloudinary.com/dpp2rltxx/image/upload/v1785186707/csi/team/arun-garg-founder_sbcmbp.webp",
         name: "Mr. Arun Garg",
         position: "Mentor",
         links: {
@@ -119,6 +119,16 @@ export const people2: Person[] = [
     {
         id: 5,
         image_source:
+            "https://res.cloudinary.com/dpp2rltxx/image/upload/v1785138431/csi/team/Kshitij_Dahiya_rx5hro.jpg",
+        name: "Kshitij Dahiya",
+        position: "Research Head",
+        links: {
+            linkedin: "",
+        },
+    },
+    {
+        id: 6,
+        image_source:
             "https://res.cloudinary.com/dmwkrlwik/image/upload/v1758211274/Screenshot_2025-09-18_213054_f2tkwy.png",
         name: "Shubham Jha",
         position: "Content Head",
@@ -127,7 +137,7 @@ export const people2: Person[] = [
         },
     },
     {
-        id: 6,
+        id: 7,
         image_source:
             "https://res.cloudinary.com/dmwkrlwik/image/upload/v1758197130/Dhruv_ypi5cm_a9a469.jpg",
         name: "Dhruv Mehra",
@@ -137,7 +147,7 @@ export const people2: Person[] = [
         },
     },
     {
-        id: 7,
+        id: 8,
         image_source:
             "https://res.cloudinary.com/dmwkrlwik/image/upload/v1758197164/Bhumi_t7ltp9_3e033e.webp",
         name: "Bhumi Rajbhar",
@@ -147,7 +157,7 @@ export const people2: Person[] = [
         },
     },
     {
-        id: 8,
+        id: 9,
         image_source:
             "https://res.cloudinary.com/dmwkrlwik/image/upload/v1758197212/liesha_gupta_pryso1_0ac19b.jpg",
         name: "Liesha Gupta",
@@ -157,7 +167,7 @@ export const people2: Person[] = [
         },
     },
     {
-        id: 9,
+        id: 10,
         image_source:
             "https://res.cloudinary.com/dmwkrlwik/image/upload/v1758196144/Ashwani_2_mn8spt_a066d0.jpg",
         name: "Ashwani Kumar",
@@ -167,7 +177,7 @@ export const people2: Person[] = [
         },
     },
     {
-        id: 10,
+        id: 11,
         image_source:
             "https://res.cloudinary.com/dmwkrlwik/image/upload/v1758197321/IMG-20250910-WA0068_zarlo6_be3469.jpg",
         name: "Parthsaarthie Sharma",
@@ -177,7 +187,7 @@ export const people2: Person[] = [
         },
     },
     {
-        id: 11,
+        id: 12,
         image_source:
             "https://res.cloudinary.com/dmwkrlwik/image/upload/v1758197265/lakshay_g3rfnf_2bd269.jpg",
         name: "Lakshay Gupta",
@@ -187,23 +197,13 @@ export const people2: Person[] = [
         },
     },
     {
-        id: 12,
+        id: 13,
         image_source:
             "https://res.cloudinary.com/dmwkrlwik/image/upload/v1758196524/Naveen_edited_damfmh.jpg",
         name: "Naveen Verma",
         position: "Data Head",
         links: {
             linkedin: "https://www.linkedin.com/in/naveen-verma-396b93276/",
-        },
-    },
-    {
-        id: 13,
-        image_source:
-            "https://res.cloudinary.com/dpp2rltxx/image/upload/v1785138431/csi/team/Kshitij_Dahiya_rx5hro.jpg",
-        name: "Kshitij Dahiya",
-        position: "Research Head",
-        links: {
-            linkedin: "",
         },
     },
 ];

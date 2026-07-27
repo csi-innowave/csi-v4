@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useRef, useState } from "react";
+import Link from "next/link";
 import CardSwap, { Card } from "../CardSwap";
 import { Instrument_Serif, Space_Grotesk } from "next/font/google";
 import { ArrowRight } from "lucide-react";
@@ -143,7 +144,7 @@ export default function About() {
             <p className={`${spaceGrotesk.className} text-[17px] md:text-[20px] text-white/40 font-light leading-[1.8] mb-10`}>
               The Computer Society of India at MAIT is a premier technical society. We shape the next generation of software engineers through relentless innovation, strategic collaboration, and a tightly-knit community of creators.
             </p>
-            <button className={`group ${spaceGrotesk.className} inline-flex items-center gap-4 text-sm font-medium text-white/60 hover:text-violet-400 transition-all duration-300`}>
+            <Link href="/events" className={`group ${spaceGrotesk.className} inline-flex items-center gap-4 text-sm font-medium text-white/60 hover:text-violet-400 transition-all duration-300`}>
               <span className="relative overflow-hidden pb-1">
                 Explore Our Legacy
                 <span className="absolute bottom-0 left-0 w-full h-[1px] bg-white/10 transform origin-left transition-transform duration-300 group-hover:scale-x-0" />
@@ -152,7 +153,7 @@ export default function About() {
               <div className="w-8 h-8 rounded-full border border-white/10 flex items-center justify-center group-hover:border-violet-400/40 group-hover:bg-violet-500/10 transition-all duration-300">
                 <ArrowRight className="w-4 h-4 transform group-hover:translate-x-0.5 transition-transform duration-300" />
               </div>
-            </button>
+            </Link>
           </div>
         </div>
 

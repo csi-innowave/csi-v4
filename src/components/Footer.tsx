@@ -139,11 +139,7 @@ export default function Footer() {
 
                 {/* Bottom Bar */}
                 <div className={`relative z-50 max-w-5xl mx-auto flex flex-col items-center gap-4 md:gap-6 mt-6 border-t border-white/5 pt-4 ${spaceGrotesk.className}`}>
-                    <div className="flex flex-wrap justify-center gap-3 sm:gap-4 text-white/50 text-[10px] sm:text-[11px] font-medium uppercase tracking-wider">
-                        <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
-                        <span className="opacity-30">•</span>
-                        <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
-                        <span className="opacity-30">•</span>
+                    <div className="flex flex-wrap justify-center text-white/50 text-[10px] sm:text-[11px] font-medium uppercase tracking-wider">
                         <span>© 2025 CSI Innowave</span>
                     </div>
                 </div>
