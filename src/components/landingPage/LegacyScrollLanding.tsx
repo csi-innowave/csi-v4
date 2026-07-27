@@ -14,12 +14,12 @@ const instrumentSerif = Instrument_Serif({
 
 const items = [
     {
-        title: "INNOVATION ON DISPLAY",
-        description: "Showcasing our ideas and technology-driven projects during the NBA visit, turning creativity into real-world innovation.",
+        title: "THE SPIRIT OF CSI",
+        description: "More than a team, we are a family — united by memories, driven by passion, and bonded by the spirit of CSI-IW.",
         media: {
-            type: "image",
-            src: "https://res.cloudinary.com/dpp2rltxx/image/upload/v1785183540/csi/Highlights/INNOVATION_ON_DISPLAY_duu3w6.jpg",
-            alt: "Innovation On Display",
+            type: "video",
+            src: "https://res.cloudinary.com/dpp2rltxx/video/upload/v1785183559/csi/Highlights/THE_SPIRIT_OF_CSI_maod3p.mp4",
+            alt: "The Spirit Of CSI",
             className: ""
         }
     },
@@ -34,22 +34,22 @@ const items = [
         }
     },
     {
+        title: "INNOVATION ON DISPLAY",
+        description: "Showcasing our ideas and technology-driven projects during the NBA visit, turning creativity into real-world innovation.",
+        media: {
+            type: "image",
+            src: "https://res.cloudinary.com/dpp2rltxx/image/upload/v1785183540/csi/Highlights/INNOVATION_ON_DISPLAY_duu3w6.jpg",
+            alt: "Innovation On Display",
+            className: ""
+        }
+    },
+    {
         title: "ROOTED IN VALUES",
         description: "Honouring our roots as we move forward together, building a community grounded in unity and shared purpose",
         media: {
             type: "image",
             src: "https://res.cloudinary.com/dpp2rltxx/image/upload/v1785183544/csi/Highlights/ROOTED_IN_VALUES_xkj5gn.jpg",
             alt: "Rooted In Values",
-            className: ""
-        }
-    },
-    {
-        title: "THE SPIRIT OF CSI",
-        description: "More than a team, we are a family — united by memories, driven by passion, and bonded by the spirit of CSI-IW.",
-        media: {
-            type: "video",
-            src: "https://res.cloudinary.com/dpp2rltxx/video/upload/v1785183559/csi/Highlights/THE_SPIRIT_OF_CSI_maod3p.mp4",
-            alt: "The Spirit Of CSI",
             className: ""
         }
     }
