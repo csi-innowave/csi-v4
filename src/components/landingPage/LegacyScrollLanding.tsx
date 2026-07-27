@@ -14,75 +14,45 @@ const instrumentSerif = Instrument_Serif({
 
 const items = [
     {
-        title: "SPIRIT OF ADVENTURE",
-        description: "Embracing the digital revolution by hosting a VR gaming station at Techsurge & Mridang.",
+        title: "INNOVATION ON DISPLAY",
+        description: "Showcasing our ideas and technology-driven projects during the NBA visit, turning creativity into real-world innovation.",
         media: {
             type: "image",
-            src: "https://res.cloudinary.com/du0mba5mz/image/upload/f_auto,q_auto/v1722872876/CSI/WhatsApp_Image_2024-08-05_at_14.28.28_95e8cc38_oeaoze.jpg",
-            alt: "Adventure",
+            src: "https://res.cloudinary.com/dpp2rltxx/image/upload/v1785183540/csi/Highlights/INNOVATION_ON_DISPLAY_duu3w6.jpg",
+            alt: "Innovation On Display",
             className: ""
         }
     },
     {
-        title: "ART OF DESIGN",
-        description: "Our team hand-printed this to leave a lasting mark on MindForge! The creativity speaks for itself.",
+        title: "LEADING THE WAVE",
+        description: "The leadership behind the vision—driving ideas, empowering teams, and shaping the journey of CSI-InnoWave.",
         media: {
-            type: "video",
-            src: "https://res.cloudinary.com/du0mba5mz/video/upload/v1722875071/CSI/Recording_2024-08-05_215455_anz67d.mp4",
-            alt: "Art of Design",
+            type: "image",
+            src: "https://res.cloudinary.com/dpp2rltxx/image/upload/v1785183546/csi/Highlights/LEADING_THE_WAVE_loiutk.jpg",
+            alt: "Leading The Wave",
             className: ""
         }
     },
     {
-        title: "COMMUNICATION",
-        description: "Communication and planning are absolutely crucial for any successful event.",
-        media: {
-            type: "video",
-            src: "https://res.cloudinary.com/du0mba5mz/video/upload/v1722875836/CSI/Untitled_design2_y9ylh7.mp4",
-            alt: "Communication",
-            className: "object-top"
-        }
-    },
-    {
-        title: "TEAM COLLABORATION",
-        description: "The people who became family, always there through our highs and lows.",
+        title: "ROOTED IN VALUES",
+        description: "Honouring our roots as we move forward together, building a community grounded in unity and shared purpose",
         media: {
             type: "image",
-            src: "https://res.cloudinary.com/du0mba5mz/image/upload/f_auto,q_auto/v1722877884/CSI/Screenshot_2024-08-05_224149_cdr5aj.png",
-            alt: "Team Collaboration",
-            className: "grayscale hover:grayscale-0 transition-all duration-1000 object-[center_30%]"
-        }
-    },
-    {
-        title: "DIGITAL REVOLUTION",
-        description: "Our VR gaming stall showcased our tech enthusiasm in the Innovation Mela.",
-        media: {
-            type: "video",
-            src: "https://res.cloudinary.com/du0mba5mz/video/upload/v1722877017/CSI/Untitled_design3_cvfszb.mp4",
-            alt: "Digital Revolution",
+            src: "https://res.cloudinary.com/dpp2rltxx/image/upload/v1785183544/csi/Highlights/ROOTED_IN_VALUES_xkj5gn.jpg",
+            alt: "Rooted In Values",
             className: ""
         }
     },
     {
-        title: "JOY OF CREATION",
-        description: "Our entire team came together to create joyous memories and build something amazing!",
+        title: "THE SPIRIT OF CSI",
+        description: "More than a team, we are a family — united by memories, driven by passion, and bonded by the spirit of CSI-IW.",
         media: {
-            type: "image",
-            src: "https://res.cloudinary.com/du0mba5mz/image/upload/f_auto,q_auto/v1722837673/CSI/Screenshot_2024-08-05_113134_vueyzc.png",
-            alt: "Joy of Creation",
-            className: "object-[center_30%]"
+            type: "video",
+            src: "https://res.cloudinary.com/dpp2rltxx/video/upload/v1785183559/csi/Highlights/THE_SPIRIT_OF_CSI_maod3p.mp4",
+            alt: "The Spirit Of CSI",
+            className: ""
         }
-    },
-    {
-        title: "VR INFUSION",
-        description: "Join the quest for experiencing the ultimate thrill of bringing ideas to life.",
-        media: {
-            type: "image",
-            src: "https://res.cloudinary.com/du0mba5mz/image/upload/f_auto,q_auto/v1722872876/CSI/WhatsApp_Image_2024-08-05_at_14.27.21_8391df60_ukn57q.jpg",
-            alt: "VR Infusion",
-            className: "object-top"
-        }
-    },
+    }
 ];
 
 const ScrubbableContentBlock = ({
