@@ -21,9 +21,31 @@ const spaceGrotesk = Space_Grotesk({
 
 import { motion } from "framer-motion";
 
+class LanyardBoundary extends React.Component<{ children: React.ReactNode }, { hasError: boolean }> {
+    state = { hasError: false };
+    static getDerivedStateFromError() {
+        return { hasError: true };
+    }
+    componentDidCatch(err: any) {
+        console.warn("Lanyard 3D canvas disabled:", err);
+    }
+    render() {
+        if (this.state.hasError) return null;
+        return this.props.children;
+    }
+}
+
 export default function Footer() {
     const [frontImg, setFrontImg] = useState('/ID_front.avif');
     const [backImg, setBackImg] = useState('/ID_back.avif');
+    const [isDesktop, setIsDesktop] = useState(false);
+
+    useEffect(() => {
+        setIsDesktop(window.innerWidth >= 768);
+        const handleResize = () => setIsDesktop(window.innerWidth >= 768);
+        window.addEventListener('resize', handleResize);
+        return () => window.removeEventListener('resize', handleResize);
+    }, []);
 
     useEffect(() => {
         const img = new window.Image();
@@ -50,12 +72,16 @@ export default function Footer() {
                     </div>
                 </div>
 
-                {/* Lanyard Layer - Hidden on Mobile to prevent overlapping text */}
-                <div className="absolute inset-0 z-[5] pointer-events-none overflow-hidden rounded-t-[2rem] md:rounded-t-[3rem] hidden md:block">
-                    <div className="absolute top-0 right-0 w-full md:w-1/2 lg:w-1/3 h-full flex items-center justify-center translate-x-8 md:translate-x-16 lg:translate-x-24 pointer-events-auto">
-                        <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} flipped={true} frontImage={frontImg} backImage={backImg} lanyardImage="/lanyard.png" />
+                {/* Lanyard Layer - Rendered conditionally on desktop with safety boundary */}
+                {isDesktop && (
+                    <div className="absolute inset-0 z-[5] pointer-events-none overflow-hidden rounded-t-[2rem] md:rounded-t-[3rem]">
+                        <div className="absolute top-0 right-0 w-full md:w-1/2 lg:w-1/3 h-full flex items-center justify-center translate-x-8 md:translate-x-16 lg:translate-x-24 pointer-events-auto">
+                            <LanyardBoundary>
+                                <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} flipped={true} frontImage={frontImg} backImage={backImg} lanyardImage="/lanyard.png" />
+                            </LanyardBoundary>
+                        </div>
                     </div>
-                </div>
+                )}
 
                 {/* Logo on Top Left */}
                 <div className="absolute top-6 left-6 md:top-12 md:left-12 z-20 pointer-events-none">
