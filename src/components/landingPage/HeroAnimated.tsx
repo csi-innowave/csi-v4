@@ -38,13 +38,6 @@ export default function HeroAnimated() {
         },
     };
 
-    const boxReveal = {
-        hidden: { y: "110%" },
-        show: {
-            y: "0%",
-            transition: { ease: easeOut, duration: 1.2, staggerChildren: 0.3 }
-        },
-    };
 
     // Global Mouse Tracking for CSS Parallax
     const mouseX = useMotionValue(0);
@@ -204,7 +197,7 @@ export default function HeroAnimated() {
                             {/* Row 2: INNOWAVE (Right Aligned - scales without fading!) */}
                             <div className="relative flex justify-end w-full mt-2 md:mt-1 overflow-hidden pb-6 -mr-4 md:-mr-12">
                                 {/* The Box around the text */}
-                                <motion.div variants={boxReveal} className="relative overflow-hidden rounded-none border border-white/10 shadow-2xl">
+                                <div className="relative overflow-hidden rounded-none border border-white/10 shadow-2xl">
                                     {/* Video in background of the box */}
                                     <video 
                                         src="/textfill.mp4" 
@@ -223,7 +216,7 @@ export default function HeroAnimated() {
                                             INNOWAVE
                                         </h1>
                                     </motion.div>
-                                </motion.div>
+                                </div>
                             </div>
                         </div>
                     </motion.div>
