@@ -90,12 +90,12 @@ const CyberGlassCard = ({ person, isLarge = false }: { person: any, isLarge?: bo
                     />
 
                     {/* The Image */}
-                    <div className="absolute inset-0 w-full h-full opacity-90 group-hover:opacity-100 transition-opacity duration-500">
+                    <div className="absolute inset-0 w-full h-full opacity-100 transition-opacity duration-500">
                         {person.image_source ? (
                             <img
                                 src={person.image_source.includes('/upload/') ? person.image_source.replace(/\/upload\//, '/upload/f_auto,q_auto,w_400/') : person.image_source}
                                 alt={person.name}
-                                className="w-full h-full object-cover object-top"
+                                className="w-full h-full object-cover object-top brightness-110 group-hover:brightness-115 transition-all duration-500"
                             />
                         ) : (
                             <div className="w-full h-full bg-zinc-800 animate-pulse flex items-center justify-center">
@@ -107,7 +107,7 @@ const CyberGlassCard = ({ person, isLarge = false }: { person: any, isLarge?: bo
                     </div>
 
                     {/* Gradient Overlay for Readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/40 to-transparent opacity-80 group-hover:opacity-90 transition-opacity duration-500 pointer-events-none" />
+                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/25 to-transparent opacity-70 group-hover:opacity-75 transition-opacity duration-500 pointer-events-none" />
 
                     {/* Frosted Glass Info Block at the Bottom (Static, no movement on hover) */}
                     <div className="absolute bottom-0 left-0 w-full p-5 flex flex-col justify-end z-30 pointer-events-none">
