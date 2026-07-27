@@ -170,6 +170,7 @@ const ScrubbableContentBlock = ({
                                 muted
                                 loop
                                 playsInline
+                                onEnded={(e) => e.currentTarget.play()}
                             />
                         ) : (
                             <Image

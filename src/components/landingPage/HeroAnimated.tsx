@@ -202,6 +202,7 @@ export default function HeroAnimated() {
                                     <video 
                                         src="/textfill.mp4" 
                                         autoPlay loop muted playsInline 
+                                        onEnded={(e) => e.currentTarget.play()}
                                         className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none opacity-90" 
                                     />
                                     
