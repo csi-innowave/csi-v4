@@ -195,26 +195,28 @@ export default function HeroAnimated() {
                             </motion.div>
 
                             {/* Row 2: INNOWAVE (Right Aligned - scales without fading!) */}
-                            <div className="relative flex justify-end w-full mt-2 md:mt-1 overflow-hidden pb-6 pr-8 -mr-8 bg-black">
-                                {/* The Animating White Text */}
-                                <motion.div variants={textReveal} className="relative z-10 w-full flex justify-end">
-                                    <h1
-                                        className="text-[18vw] md:text-[15vw] font-black tracking-[-0.06em] leading-[0.85] text-white inline-block pr-4"
-                                        style={{
-                                            WebkitTextStroke: "1px rgba(255, 255, 255, 0.25)",
-                                        }}
-                                    >
-                                        INNOWAVE
-                                    </h1>
-                                </motion.div>
-                                
-                                {/* Video Multiplied over the Text */}
-                                {/* multiply(white, video) = video, multiply(black, video) = black */}
-                                <video 
-                                    src="/textfill.mp4" 
-                                    autoPlay loop muted playsInline 
-                                    className="absolute inset-0 w-full h-full object-cover z-20 mix-blend-multiply pointer-events-none" 
-                                />
+                            <div className="relative flex justify-end w-full mt-2 md:mt-1 overflow-hidden pb-6 pr-8 -mr-8">
+                                {/* The Box around the text */}
+                                <div className="relative overflow-hidden rounded-xl md:rounded-3xl border border-white/10 shadow-2xl">
+                                    {/* Video in background of the box */}
+                                    <video 
+                                        src="/textfill.mp4" 
+                                        autoPlay loop muted playsInline 
+                                        className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none opacity-90" 
+                                    />
+                                    
+                                    {/* The Animating Black Text (Becomes transparent due to parent mix-blend-lighten) */}
+                                    <motion.div variants={textReveal} className="relative z-10 px-4 md:px-8 py-2 md:py-4 flex justify-end">
+                                        <h1
+                                            className="text-[18vw] md:text-[15vw] font-black tracking-[-0.06em] leading-[0.85] text-black inline-block"
+                                            style={{
+                                                WebkitTextStroke: "1px rgba(255, 255, 255, 0.15)",
+                                            }}
+                                        >
+                                            INNOWAVE
+                                        </h1>
+                                    </motion.div>
+                                </div>
                             </div>
                         </div>
                     </motion.div>
