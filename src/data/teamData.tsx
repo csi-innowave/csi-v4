@@ -81,7 +81,7 @@ export const people2: Person[] = [
     {
         id: 1,
         image_source:
-            "https://res.cloudinary.com/dmwkrlwik/image/upload/v1758195698/IMG-20250222-WA0058_gukbd4_e92076.jpg",
+            "https://res.cloudinary.com/dpp2rltxx/image/upload/v1785139553/csi/team/Nikhil_Hatwal_hdxuij.jpg",
         name: "Nikhil Hatwal",
         position: "Chairperson",
         links: {
