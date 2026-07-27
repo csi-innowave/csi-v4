@@ -233,8 +233,8 @@ const ScrubbableContentBlock = ({
                         {item.description}
                     </p>
 
-                    {/* Ultra-Luxury Minimalist Progress Line & Counter */}
-                    <div className="mt-6 md:mt-10 pt-4 border-t border-white/10 w-full max-w-[260px] sm:max-w-xs flex items-center justify-between gap-5">
+                    {/* Ultra-Luxury Minimalist Progress Line & Counter (Mobile Only) */}
+                    <div className="mt-6 pt-4 border-t border-white/10 w-full max-w-[260px] sm:max-w-xs flex items-center justify-between gap-5 md:hidden">
                         <div className="flex items-baseline gap-1 font-mono">
                             <span className="text-base md:text-lg font-medium text-white tracking-tight">
                                 0{index + 1}
