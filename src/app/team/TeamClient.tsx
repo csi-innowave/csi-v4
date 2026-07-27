@@ -106,8 +106,8 @@ const CyberGlassCard = ({ person, isLarge = false }: { person: any, isLarge?: bo
                         )}
                     </div>
 
-                    {/* Gradient Overlay for Readability */}
-                    <div className="absolute inset-0 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/25 to-transparent opacity-70 group-hover:opacity-75 transition-opacity duration-500 pointer-events-none" />
+                    {/* Focused Bottom Dark Gradient for Text Contrast */}
+                    <div className="absolute bottom-0 inset-x-0 h-1/2 bg-gradient-to-t from-[#0a0a0a] via-[#0a0a0a]/60 to-transparent pointer-events-none z-20" />
 
                     {/* Frosted Glass Info Block at the Bottom (Static, no movement on hover) */}
                     <div className="absolute bottom-0 left-0 w-full p-5 flex flex-col justify-end z-30 pointer-events-none">
