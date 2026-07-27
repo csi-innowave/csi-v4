@@ -195,9 +195,9 @@ export default function HeroAnimated() {
                             </motion.div>
 
                             {/* Row 2: INNOWAVE (Right Aligned - scales without fading!) */}
-                            <div className="relative flex justify-end w-full mt-2 md:mt-1 overflow-hidden pb-6 pr-8 -mr-8">
+                            <div className="relative flex justify-end w-full mt-2 md:mt-1 overflow-hidden pb-6 -mr-4 md:-mr-12">
                                 {/* The Box around the text */}
-                                <div className="relative overflow-hidden rounded-xl md:rounded-3xl border border-white/10 shadow-2xl">
+                                <div className="relative overflow-hidden rounded-none border border-white/10 shadow-2xl">
                                     {/* Video in background of the box */}
                                     <video 
                                         src="/textfill.mp4" 
@@ -206,7 +206,7 @@ export default function HeroAnimated() {
                                     />
                                     
                                     {/* The Animating Black Text (Becomes transparent due to parent mix-blend-lighten) */}
-                                    <motion.div variants={textReveal} className="relative z-10 px-4 md:px-8 py-2 md:py-4 flex justify-end">
+                                    <motion.div variants={textReveal} className="relative z-10 pl-4 md:pl-8 pr-2 md:pr-4 py-2 md:py-4 flex justify-end">
                                         <h1
                                             className="text-[18vw] md:text-[15vw] font-black tracking-[-0.06em] leading-[0.85] text-black inline-block"
                                             style={{
