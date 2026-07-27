@@ -37,10 +37,10 @@ export default function Footer() {
 
     return (
         <div className="relative w-full z-50">
-            <motion.footer className="relative bg-[#0a0a0a] text-white/80 rounded-t-[3rem] w-full px-6 md:px-12 pt-16 pb-8 border-t border-white/[0.04] shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
+            <motion.footer className="relative bg-[#0a0a0a] text-white/80 rounded-t-[2rem] md:rounded-t-[3rem] w-full px-5 sm:px-8 md:px-12 pt-10 md:pt-16 pb-6 md:pb-8 border-t border-white/[0.04] shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
                 
                 {/* Background Layer (Clipped to rounded corners) */}
-                <div className="absolute inset-0 overflow-hidden rounded-t-[3rem] z-0">
+                <div className="absolute inset-0 overflow-hidden rounded-t-[2rem] md:rounded-t-[3rem] z-0">
                     {/* Topographic Background SVG - Violet tinted (Original Style Extended) */}
                     <div className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-screen" 
                         style={{ 
@@ -50,60 +50,60 @@ export default function Footer() {
                     </div>
                 </div>
 
-                {/* Lanyard Layer */}
-                <div className="absolute inset-0 z-[5] pointer-events-none overflow-hidden rounded-t-[3rem]">
+                {/* Lanyard Layer - Hidden on Mobile to prevent overlapping text */}
+                <div className="absolute inset-0 z-[5] pointer-events-none overflow-hidden rounded-t-[2rem] md:rounded-t-[3rem] hidden md:block">
                     <div className="absolute top-0 right-0 w-full md:w-1/2 lg:w-1/3 h-full flex items-center justify-center translate-x-8 md:translate-x-16 lg:translate-x-24 pointer-events-auto">
                         <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} flipped={true} frontImage={frontImg} backImage={backImg} lanyardImage="/lanyard.png" />
                     </div>
                 </div>
 
                 {/* Logo on Top Left */}
-                <div className="absolute top-8 left-8 md:top-12 md:left-12 z-20 pointer-events-none">
+                <div className="absolute top-6 left-6 md:top-12 md:left-12 z-20 pointer-events-none">
                     <div className="relative">
                         {/* Glow behind the logo */}
-                        <div className="absolute inset-0 bg-violet-600/30 blur-[30px] rounded-full w-20 h-20"></div>
+                        <div className="absolute inset-0 bg-violet-600/30 blur-[20px] md:blur-[30px] rounded-full w-12 h-12 md:w-20 md:h-20"></div>
                         <Image 
                             src="/logo.png" 
                             alt="CSI Innowave Logo" 
                             width={80} 
                             height={80} 
-                            className="relative w-16 h-16 md:w-20 md:h-20 object-contain drop-shadow-[0_0_15px_rgba(139,92,246,0.5)]"
+                            className="relative w-12 h-12 md:w-20 md:h-20 object-contain drop-shadow-[0_0_15px_rgba(139,92,246,0.5)]"
                         />
                     </div>
                 </div>
 
                 {/* Central Floating 3D Asterisk */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center z-20 pointer-events-none">
-                    <div className="relative w-24 h-24 md:w-32 md:h-32 flex items-center justify-center">
+                    <div className="relative w-16 h-16 md:w-32 md:h-32 flex items-center justify-center">
                         <div className="absolute w-full h-[25%] bg-violet-600 rounded-full rotate-0 opacity-90 shadow-[inset_0_0_15px_rgba(0,0,0,0.5)] border border-violet-400/50" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(0,0,0,0.2) 3px, rgba(0,0,0,0.2) 6px)'}}></div>
                         <div className="absolute w-full h-[25%] bg-violet-600 rounded-full rotate-[60deg] opacity-90 shadow-[inset_0_0_15px_rgba(0,0,0,0.5)] border border-violet-400/50" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(0,0,0,0.2) 3px, rgba(0,0,0,0.2) 6px)'}}></div>
                         <div className="absolute w-full h-[25%] bg-violet-600 rounded-full -rotate-[60deg] opacity-90 shadow-[inset_0_0_15px_rgba(0,0,0,0.5)] border border-violet-400/50" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(0,0,0,0.2) 3px, rgba(0,0,0,0.2) 6px)'}}></div>
                     </div>
                 </div>
 
-                <div className="relative z-50 max-w-7xl mx-auto flex flex-col items-center mt-4 mb-12">
-                    <h2 className={`${instrumentSerif.className} text-5xl md:text-7xl font-bold text-white mb-3 text-center tracking-tight leading-tight`}>
+                <div className="relative z-50 max-w-7xl mx-auto flex flex-col items-center mt-2 md:mt-4 mb-8 md:mb-12">
+                    <h2 className={`${instrumentSerif.className} text-3xl sm:text-4xl md:text-7xl font-bold text-white mb-2 md:mb-3 text-center tracking-tight leading-tight`}>
                         CSI Innowave
                     </h2>
-                    <p className={`${instrumentSerif.className} text-xl md:text-2xl text-white/50 italic mb-8 text-center`}>
+                    <p className={`${instrumentSerif.className} text-sm sm:text-base md:text-2xl text-white/50 italic mb-6 md:mb-8 text-center`}>
                         Pioneering the future of technology
                     </p>
 
                     {/* Pill Buttons */}
-                    <div className="flex flex-col sm:flex-row gap-4">
-                        <Link href="https://www.instagram.com/mait_csi_innowave/" target="_blank" className={`${spaceGrotesk.className} bg-violet-600 hover:bg-violet-500 text-white px-6 py-2.5 rounded-full flex items-center gap-3 font-semibold text-sm transition-all hover:scale-105 shadow-[0_0_20px_rgba(139,92,246,0.3)]`}>
+                    <div className="flex flex-col sm:flex-row gap-3 w-full sm:w-auto px-4 sm:px-0">
+                        <Link href="https://www.instagram.com/mait_csi_innowave/" target="_blank" className={`${spaceGrotesk.className} bg-violet-600 hover:bg-violet-500 text-white px-5 py-2.5 md:px-6 md:py-2.5 rounded-full flex items-center justify-center gap-3 font-semibold text-xs sm:text-sm transition-all hover:scale-105 shadow-[0_0_20px_rgba(139,92,246,0.3)]`}>
                             Follow on Instagram <span className="bg-white text-violet-600 rounded-full p-1"><FaArrowRight size={10} /></span>
                         </Link>
-                        <Link href="#" target="_blank" className={`${spaceGrotesk.className} border border-violet-500/50 text-violet-400 hover:bg-violet-500/10 px-6 py-2.5 rounded-full flex items-center gap-3 font-semibold text-sm transition-transform hover:scale-105`}>
+                        <Link href="#" target="_blank" className={`${spaceGrotesk.className} border border-violet-500/50 text-violet-400 hover:bg-violet-500/10 px-5 py-2.5 md:px-6 md:py-2.5 rounded-full flex items-center justify-center gap-3 font-semibold text-xs sm:text-sm transition-transform hover:scale-105`}>
                             Join Community <span className="bg-violet-500/20 text-violet-400 rounded-full p-1"><FaArrowRight size={10} /></span>
                         </Link>
                     </div>
                 </div>
 
-                <div className={`relative z-50 max-w-5xl mx-auto grid grid-cols-1 md:grid-cols-4 gap-8 text-white/60 text-sm ${spaceGrotesk.className} mb-10`}>
+                <div className={`relative z-50 max-w-5xl mx-auto grid grid-cols-1 sm:grid-cols-2 md:grid-cols-4 gap-6 md:gap-8 text-white/60 text-xs sm:text-sm ${spaceGrotesk.className} mb-8 md:mb-10`}>
                     {/* Column 1: Contact */}
                     <div className="flex flex-col gap-1 pt-0 md:pt-6">
-                        <h3 className="text-white text-lg font-medium mb-3">Contact</h3>
+                        <h3 className="text-white text-base md:text-lg font-medium mb-2 md:mb-3">Contact</h3>
                         <p>MAIT, Sector 22, Rohini</p>
                         <p>110086 Delhi</p>
                         <p className="mt-1">+91 8920125672</p>
@@ -111,7 +111,8 @@ export default function Footer() {
                     </div>
 
                     {/* Column 2: Socials */}
-                    <div className="flex flex-col gap-2 pt-2 md:pt-6">
+                    <div className="flex flex-col gap-2 pt-0 md:pt-6">
+                        <h3 className="text-white text-base md:text-lg font-medium mb-2 md:mb-3 sm:hidden">Socials</h3>
                         <Link href="https://www.instagram.com/mait_csi_innowave/" target="_blank" className="flex items-center gap-2 hover:text-white transition-colors w-fit group">
                             Instagram <span className="text-violet-400 group-hover:translate-x-0.5 group-hover:-translate-y-0.5 transition-transform">↗</span>
                         </Link>
@@ -125,7 +126,7 @@ export default function Footer() {
 
                     {/* Column 3: Quick Links */}
                     <div className="flex flex-col gap-1 md:col-span-2 pt-0 md:pt-6">
-                        <h3 className="text-white text-lg font-medium mb-3">Quick links</h3>
+                        <h3 className="text-white text-base md:text-lg font-medium mb-2 md:mb-3">Quick links</h3>
                         <div className="grid grid-cols-2 gap-x-8 gap-y-2">
                             <Link href="/" className="hover:text-white transition-colors">Home</Link>
                             <Link href="/team" className="hover:text-white transition-colors">Team</Link>
@@ -137,10 +138,12 @@ export default function Footer() {
                 </div>
 
                 {/* Bottom Bar */}
-                <div className={`relative z-50 max-w-5xl mx-auto flex flex-col items-center gap-6 mt-6 border-t border-white/5 pt-4 ${spaceGrotesk.className}`}>
-                    <div className="flex gap-4 text-white/50 text-[11px] font-medium uppercase tracking-wider">
+                <div className={`relative z-50 max-w-5xl mx-auto flex flex-col items-center gap-4 md:gap-6 mt-6 border-t border-white/5 pt-4 ${spaceGrotesk.className}`}>
+                    <div className="flex flex-wrap justify-center gap-3 sm:gap-4 text-white/50 text-[10px] sm:text-[11px] font-medium uppercase tracking-wider">
                         <Link href="#" className="hover:text-white transition-colors">Privacy Policy</Link>
+                        <span className="opacity-30">•</span>
                         <Link href="#" className="hover:text-white transition-colors">Terms of Service</Link>
+                        <span className="opacity-30">•</span>
                         <span>© 2025 CSI Innowave</span>
                     </div>
                 </div>

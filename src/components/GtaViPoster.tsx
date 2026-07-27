@@ -134,7 +134,7 @@ const LAYERS: LayerDef[] = [
     name: "CSI logo",
     initialScale: 1.2,
     revealDelay: 0.2,
-    className: "p-32 md:p-56 object-contain opacity-70 drop-shadow-xl",
+    className: "p-40 sm:p-48 md:p-64 lg:p-72 object-contain opacity-70 drop-shadow-xl",
   },
 
   // INNOWAVE Logo (Absolute FRONT)
@@ -143,7 +143,7 @@ const LAYERS: LayerDef[] = [
     name: "GTA logo", // Used to trigger the special blur/clip-path effect
     initialScale: 3.0,
     revealDelay: 1.4,
-    className: "p-32 md:p-56 object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.8)]",
+    className: "p-40 sm:p-48 md:p-64 lg:p-72 object-contain drop-shadow-[0_30px_60px_rgba(0,0,0,0.8)]",
     initial: {
       opacity: 1,
       clipPath: "inset(0% 0% 100% 0%)",
@@ -177,7 +177,7 @@ export function GtaViPoster({
   depth = 1,
   logoBlur = 4,
   posterRadius = 0,
-  background = "radial-gradient(circle at 50% 28%, #2a1133, #080611 72%)",
+  background = "transparent",
   showReplay = false,
   logoSpring = DEFAULT_LOGO_SPRING,
   className,
@@ -210,7 +210,7 @@ export function GtaViPoster({
   return (
     <div
       ref={stageRef}
-      className={`relative flex h-dvh w-full items-center justify-end md:pr-[5vw] overflow-hidden ${className ?? ""}`}
+      className={`relative flex h-full w-full items-center justify-center md:justify-end md:pr-[5vw] overflow-hidden ${className ?? ""}`}
       style={{ background }}
     >
       {size > 0 ? (

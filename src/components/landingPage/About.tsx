@@ -157,12 +157,12 @@ export default function About() {
         </div>
 
         {/* Right Column: CardSwap Collage */}
-        <div className="lg:col-span-5 relative flex items-center justify-center py-20 lg:py-0 w-full overflow-visible">
+        <div className="lg:col-span-5 relative flex items-center justify-center pt-4 pb-2 md:py-20 lg:py-0 w-full min-h-[350px] xs:min-h-[390px] sm:min-h-[430px] lg:min-h-0 overflow-visible my-0 lg:my-0">
           
           {/* CardSwap Container */}
-          <div className={`relative w-full flex justify-end ${on ? 'anim-slide-right' : 'opacity-0'}`} style={{ animationDelay: "0.8s" }}>
+          <div className={`relative w-full flex justify-center lg:justify-end ${on ? 'anim-slide-right' : 'opacity-0'}`} style={{ animationDelay: "0.8s" }}>
             {/* Responsive scale wrapper */}
-            <div className="transform translate-y-12 lg:translate-y-48 scale-[0.55] xs:scale-[0.75] sm:scale-[0.85] md:scale-[0.95] lg:scale-[1.05] xl:scale-[1.15] origin-center lg:origin-top-left transition-transform duration-700 hover:scale-[1.18] -translate-x-4 md:-translate-x-8 lg:translate-x-0 xl:translate-x-4">
+            <div className="transform translate-y-6 lg:translate-y-48 scale-[0.85] xs:scale-[0.92] sm:scale-[1.0] md:scale-[1.05] lg:scale-[1.05] xl:scale-[1.15] origin-center lg:origin-top-left transition-transform duration-700 hover:scale-[1.04] lg:hover:scale-[1.18] translate-x-16 sm:translate-x-24 lg:translate-x-0 xl:translate-x-4">
               <CardSwap
                 width={560}
                 height={460}
@@ -173,7 +173,7 @@ export default function About() {
                 {CARDS.map((card) => (
                   <Card
                     key={card.id}
-                    className="bg-[#050505] border border-white/[0.08] rounded-[2rem] p-8 md:p-10 flex flex-col justify-between relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] group/card group-[.is-active]/card:border-violet-500/30 transition-colors duration-700"
+                    className="bg-[#050505] border border-white/[0.08] rounded-[1.5rem] sm:rounded-[2rem] p-6 sm:p-8 md:p-10 flex flex-col justify-between relative overflow-hidden shadow-[0_20px_50px_rgba(0,0,0,0.5)] group/card group-[.is-active]/card:border-violet-500/30 transition-colors duration-700"
                   >
                     {/* Animated Radial Glow on Hover */}
                     <div className="absolute inset-0 bg-[radial-gradient(circle_at_bottom_right,rgba(139,92,246,0.15),transparent_60%)] opacity-0 group-[.is-active]/card:opacity-100 transition-opacity duration-700" />
@@ -199,11 +199,11 @@ export default function About() {
                     </div>
 
                     {/* Main Content */}
-                    <div className="z-10 relative mt-12 mb-8">
-                      <h3 className={`${instrumentSerif.className} text-4xl md:text-5xl text-white/90 group-[.is-active]/card:text-transparent group-[.is-active]/card:bg-clip-text group-[.is-active]/card:bg-gradient-to-r group-[.is-active]/card:from-white group-[.is-active]/card:to-violet-400 transition-all duration-500 mb-4`}>
+                    <div className="z-10 relative mt-6 sm:mt-12 mb-4 sm:mb-8">
+                      <h3 className={`${instrumentSerif.className} text-3xl sm:text-4xl md:text-5xl text-white/90 group-[.is-active]/card:text-transparent group-[.is-active]/card:bg-clip-text group-[.is-active]/card:bg-gradient-to-r group-[.is-active]/card:from-white group-[.is-active]/card:to-violet-400 transition-all duration-500 mb-2 sm:mb-4`}>
                         {card.name}
                       </h3>
-                      <p className={`${spaceGrotesk.className} text-sm md:text-base text-white/40 leading-relaxed group-[.is-active]/card:text-white/70 transition-colors duration-500 max-w-[95%]`}>
+                      <p className={`${spaceGrotesk.className} text-xs sm:text-sm md:text-base text-white/40 leading-relaxed group-[.is-active]/card:text-white/70 transition-colors duration-500 max-w-[95%]`}>
                         {card.body}
                       </p>
                     </div>
@@ -224,7 +224,7 @@ export default function About() {
       </div>
 
       {/* ── Infinite Stats Marquee ── */}
-      <div className={`mt-8 py-8 border-y border-white/[0.04] ${on ? 'anim-fade-up' : 'opacity-0'}`} style={{ animationDelay: "1s" }}>
+      <div className={`mt-2 md:mt-8 py-6 md:py-8 border-y border-white/[0.04] ${on ? 'anim-fade-up' : 'opacity-0'}`} style={{ animationDelay: "1s" }}>
         <Marquee speed={30}>
           <div className={`flex items-center gap-16 ${spaceGrotesk.className} shrink-0`}>
             <div className="flex items-baseline gap-3">

@@ -34,26 +34,29 @@ export default function AboutCSI() {
             />
 
             {/* GTA VI POSTER HERO */}
-            <section className="relative w-full h-screen border-b border-white/10 overflow-hidden">
+            <section className="relative w-full min-h-screen md:h-screen border-b border-white/10 overflow-hidden flex flex-col md:block justify-between pt-28 md:pt-0 pb-8 md:pb-0 bg-transparent">
                 {/* Hero Text (Left Aligned) */}
-                <div className="absolute inset-y-0 left-0 w-full flex flex-col justify-center px-6 md:px-20 z-20 pointer-events-none">
+                <div className="relative md:absolute md:inset-y-0 left-0 w-full md:w-1/2 flex flex-col justify-center px-6 md:px-20 z-20 pointer-events-none mb-8 md:mb-0">
                     {/* Subtle glow behind text */}
-                    <div className="absolute -left-20 top-1/2 -translate-y-1/2 w-[30rem] h-[30rem] bg-blue-500/15 blur-[120px] rounded-full mix-blend-screen" />
+                    <div className="absolute -left-20 top-1/2 -translate-y-1/2 w-[20rem] md:w-[30rem] h-[20rem] md:h-[30rem] bg-blue-500/15 blur-[120px] rounded-full mix-blend-screen" />
                     
-                    <h1 className="text-6xl md:text-[7rem] lg:text-[9rem] font-[800] tracking-[-0.05em] text-white drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)] leading-none mb-10">
+                    <h1 className="text-5xl sm:text-6xl md:text-[7rem] lg:text-[9rem] font-[800] tracking-[-0.05em] text-white drop-shadow-[0_10px_40px_rgba(0,0,0,0.5)] leading-none mb-4 md:mb-10">
                         <span>About </span>
-                        <span className="text-transparent" style={{ WebkitTextStroke: '3px white' }}>CSI</span>
+                        <span className="text-transparent" style={{ WebkitTextStroke: '2px white' }}>CSI</span>
                     </h1>
                         
-                    <div className="flex gap-6 items-start max-w-lg pl-2">
-                        <div className="w-1 h-32 bg-gradient-to-b from-blue-500 to-transparent rounded-full mt-2 opacity-80" />
-                        <p className={`${spaceGrotesk.className} text-lg md:text-xl text-white/60 leading-relaxed`}>
+                    <div className="flex gap-4 md:gap-6 items-start max-w-lg pl-1 md:pl-2">
+                        <div className="w-1 h-24 md:h-32 bg-gradient-to-b from-blue-500 to-transparent rounded-full mt-1.5 md:mt-2 opacity-80 shrink-0" />
+                        <p className={`${spaceGrotesk.className} text-sm sm:text-base md:text-xl text-white/60 leading-relaxed`}>
                             The Computer Society of India chapter at MAIT, founded in 2009, unites passionate students and faculty. They collaborate to explore new business ideas through open discussions, interactive sessions, and practical activities. This fosters critical thinking and equips members with valuable business skills.
                         </p>
                     </div>
                 </div>
 
-                <GtaViPoster className="w-full h-full relative z-10" />
+                {/* Poster Container - Positioned below text on mobile, full-screen overlay on desktop */}
+                <div className="relative md:absolute md:inset-0 w-full h-[60vh] xs:h-[65vh] sm:h-[75vh] md:h-full z-10 shrink-0 flex items-center justify-center overflow-hidden -mt-12 sm:-mt-16 md:mt-0">
+                    <GtaViPoster background="transparent" fit={0.6} className="w-full h-full transform max-md:scale-[2.2] max-sm:scale-[1.8] md:scale-100 origin-center" />
+                </div>
             </section>
 
             {/* SECTIONS WRAPPER */}

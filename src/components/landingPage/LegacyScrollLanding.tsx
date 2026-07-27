@@ -174,7 +174,7 @@ const ScrubbableContentBlock = ({
     return (
         <motion.div
             style={{ opacity, pointerEvents: pointerEvents as any }}
-            className="absolute inset-0 flex flex-col md:flex-row items-center justify-between gap-8 md:gap-12 px-6 md:px-12 pt-4 pb-[200px] md:pb-[260px]"
+            className="absolute inset-0 flex flex-col md:flex-row items-center justify-start md:justify-between gap-3 sm:gap-4 md:gap-12 px-4 sm:px-6 md:px-12 pt-[70px] sm:pt-[90px] md:pt-[180px] pb-4 md:pb-24"
         >
             {/* Media Block */}
             <motion.div
@@ -186,7 +186,7 @@ const ScrubbableContentBlock = ({
                     transformPerspective: 1200
                 }}
                 className={cn(
-                    "relative w-full md:w-[55%] h-[40vh] md:h-[50vh] lg:h-[55vh] max-h-[480px] rounded-[2rem] overflow-hidden bg-[#0a0a0a] shadow-[0_0_50px_rgba(0,0,0,0.4)]",
+                    "relative w-full md:w-[55%] h-[30vh] sm:h-[36vh] md:h-[50vh] lg:h-[55vh] min-h-[190px] max-h-[480px] shrink-0 rounded-xl sm:rounded-2xl md:rounded-[2rem] overflow-hidden bg-[#0a0a0a] shadow-[0_0_50px_rgba(0,0,0,0.4)]",
                     isEven ? "md:order-1" : "md:order-2"
                 )}
             >
@@ -213,13 +213,13 @@ const ScrubbableContentBlock = ({
                 </div>
 
                 {/* Premium Overlays & Decorations */}
-                <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-[2rem] pointer-events-none z-10" />
+                <div className="absolute inset-0 ring-1 ring-inset ring-white/10 rounded-xl sm:rounded-2xl md:rounded-[2rem] pointer-events-none z-10" />
 
                 {/* Editorial Corner Crosshairs */}
-                <div className="absolute top-6 left-6 w-4 h-4 border-t-2 border-l-2 border-white/30 rounded-tl-sm pointer-events-none z-10" />
-                <div className="absolute top-6 right-6 w-4 h-4 border-t-2 border-r-2 border-white/30 rounded-tr-sm pointer-events-none z-10" />
-                <div className="absolute bottom-6 left-6 w-4 h-4 border-b-2 border-l-2 border-white/30 rounded-bl-sm pointer-events-none z-10" />
-                <div className="absolute bottom-6 right-6 w-4 h-4 border-b-2 border-r-2 border-white/30 rounded-br-sm pointer-events-none z-10" />
+                <div className="absolute top-4 left-4 md:top-6 md:left-6 w-3 h-3 md:w-4 md:h-4 border-t-2 border-l-2 border-white/30 rounded-tl-sm pointer-events-none z-10" />
+                <div className="absolute top-4 right-4 md:top-6 md:right-6 w-3 h-3 md:w-4 md:h-4 border-t-2 border-r-2 border-white/30 rounded-tr-sm pointer-events-none z-10" />
+                <div className="absolute bottom-4 left-4 md:bottom-6 md:left-6 w-3 h-3 md:w-4 md:h-4 border-b-2 border-l-2 border-white/30 rounded-bl-sm pointer-events-none z-10" />
+                <div className="absolute bottom-4 right-4 md:bottom-6 md:right-6 w-3 h-3 md:w-4 md:h-4 border-b-2 border-r-2 border-white/30 rounded-br-sm pointer-events-none z-10" />
             </motion.div>
 
             {/* Text Block */}
@@ -230,38 +230,57 @@ const ScrubbableContentBlock = ({
                     scale: textScale
                 }}
                 className={cn(
-                    "w-full md:w-[40%] flex flex-col justify-center relative z-10",
-                    isEven ? "md:order-2 md:pl-16 lg:pl-24 items-start text-left" : "md:order-1 md:pr-16 lg:pr-24 items-end text-right"
+                    "w-full md:w-[40%] flex flex-col justify-center relative z-10 shrink-0 md:shrink mt-14 sm:mt-20 md:mt-0 pt-8 sm:pt-12 md:pt-0",
+                    isEven ? "md:order-2 md:pl-16 lg:pl-24 items-start text-left" : "md:order-1 md:pr-16 lg:pr-24 items-start md:items-end text-left md:text-right"
                 )}
             >
                 {/* Massive Watermark Number */}
                 <div className={cn(
-                    "absolute top-1/2 -translate-y-1/2 text-[12rem] lg:text-[18rem] font-bold text-white/[0.02] select-none pointer-events-none z-0 tracking-tighter",
+                    "absolute top-1/2 -translate-y-1/2 text-[8rem] sm:text-[12rem] lg:text-[18rem] font-bold text-white/[0.02] select-none pointer-events-none z-0 tracking-tighter hidden sm:block",
                     isEven ? "-left-8" : "-right-8"
                 )}>
                     0{index + 1}
                 </div>
 
                 <div className={cn(
-                    "relative z-10 flex flex-col",
-                    isEven ? "items-start border-l border-violet-500/20 pl-6 md:pl-8" : "items-end border-r border-violet-500/20 pr-6 md:pr-8"
+                    "relative z-10 flex flex-col mt-4 sm:mt-6 md:mt-0",
+                    isEven ? "items-start border-l border-violet-500/20 pl-4 md:pl-8" : "items-start md:items-end border-l md:border-l-0 md:border-r border-violet-500/20 pl-4 md:pl-0 md:pr-8"
                 )}>
                     {/* Eyebrow Accent */}
-                    <div className="flex items-center gap-3 mb-4 md:mb-6">
-                        {!isEven && <div className="h-[1px] w-8 md:w-12 bg-gradient-to-r from-transparent to-violet-500/50" />}
-                        <span className="text-violet-400 font-mono text-[10px] md:text-xs tracking-[0.4em] uppercase">
+                    <div className="flex items-center gap-2 md:gap-3 mb-2 md:mb-6">
+                        {!isEven && <div className="h-[1px] w-8 md:w-12 bg-gradient-to-r from-transparent to-violet-500/50 hidden md:block" />}
+                        <span className="text-violet-400 font-mono text-[10px] md:text-xs tracking-[0.3em] md:tracking-[0.4em] uppercase">
                             Highlight 0{index + 1}
                         </span>
                         {isEven && <div className="h-[1px] w-8 md:w-12 bg-gradient-to-r from-violet-500/50 to-transparent" />}
                     </div>
 
-                    <h3 className="text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-4 md:mb-6 uppercase leading-[1.1] bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent drop-shadow-xl">
+                    <h3 className="text-xl sm:text-3xl md:text-5xl lg:text-6xl font-bold tracking-tight text-white mb-2 md:mb-6 uppercase leading-[1.1] bg-gradient-to-b from-white to-white/60 bg-clip-text text-transparent drop-shadow-xl">
                         {item.title}
                     </h3>
 
-                    <p className="text-white/50 text-sm md:text-base lg:text-lg leading-relaxed max-w-sm md:max-w-md font-light">
+                    <p className="text-white/60 text-xs sm:text-sm md:text-base lg:text-lg leading-relaxed max-w-full md:max-w-md font-light">
                         {item.description}
                     </p>
+
+                    {/* Ultra-Luxury Minimalist Progress Line & Counter */}
+                    <div className="mt-6 md:mt-10 pt-4 border-t border-white/10 w-full max-w-[260px] sm:max-w-xs flex items-center justify-between gap-5">
+                        <div className="flex items-baseline gap-1 font-mono">
+                            <span className="text-base md:text-lg font-medium text-white tracking-tight">
+                                0{index + 1}
+                            </span>
+                            <span className="text-xs text-white/30 font-light">
+                                / 0{totalItems}
+                            </span>
+                        </div>
+
+                        <div className="flex-1 h-[2px] bg-white/10 rounded-full overflow-hidden relative">
+                            <div
+                                className="absolute left-0 top-0 h-full bg-gradient-to-r from-violet-500 via-indigo-400 to-white rounded-full transition-all duration-700 ease-out shadow-[0_0_12px_rgba(139,92,246,0.8)]"
+                                style={{ width: `${((index + 1) / totalItems) * 100}%` }}
+                            />
+                        </div>
+                    </div>
                 </div>
             </motion.div>
         </motion.div>
@@ -370,7 +389,7 @@ export default function LegacyScrollLanding() {
                             initial={{ opacity: 0, y: 20 }}
                             animate={{ opacity: 1, y: 0 }}
                             transition={{ duration: 1, delay: 0.1, ease: "easeOut" }}
-                            className={`${instrumentSerif.className} relative z-10 text-6xl md:text-7xl lg:text-8xl font-normal tracking-tight bg-gradient-to-b from-white via-white/90 to-white/20 bg-clip-text text-transparent drop-shadow-2xl leading-none`}
+                            className={`${instrumentSerif.className} relative z-10 text-4xl sm:text-6xl md:text-7xl lg:text-8xl font-normal tracking-tight bg-gradient-to-b from-white via-white/90 to-white/20 bg-clip-text text-transparent drop-shadow-2xl leading-none`}
                         >
                             HIGHLIGHTS
                         </motion.h3>
@@ -381,7 +400,7 @@ export default function LegacyScrollLanding() {
                         initial={{ opacity: 0, x: 20 }}
                         animate={{ opacity: 1, x: 0 }}
                         transition={{ duration: 1, delay: 0.2, ease: "easeOut" }}
-                        className="relative z-10 flex flex-col justify-end max-w-xs md:max-w-sm mt-4 md:mt-0"
+                        className="relative z-10 hidden sm:flex flex-col justify-end max-w-xs md:max-w-sm mt-4 md:mt-0"
                     >
                         <div className="relative pl-5 md:pl-0 md:pr-6 md:border-r border-l md:border-l-0 border-white/10 py-1">
                             {/* Premium glowing accent on the border */}
@@ -399,7 +418,7 @@ export default function LegacyScrollLanding() {
                     </motion.div>
                 </div>
 
-                <div className="relative z-20 flex-1 w-full max-w-7xl mx-auto mt-48 md:mt-72">
+                <div className="relative z-20 flex-1 w-full max-w-7xl mx-auto">
                     {items.map((item, index) => (
                         <ScrubbableContentBlock
                             key={index}
