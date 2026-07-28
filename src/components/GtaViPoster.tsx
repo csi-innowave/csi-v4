@@ -130,7 +130,7 @@ const LAYERS: LayerDef[] = [
 
   // CSI Logo (Behind Innowave, but in front of Grid)
   {
-    file: "/csi.png",
+    file: "/csi.webp",
     name: "CSI logo",
     initialScale: 1.2,
     revealDelay: 0.2,
@@ -139,7 +139,7 @@ const LAYERS: LayerDef[] = [
 
   // INNOWAVE Logo (Absolute FRONT)
   {
-    file: "/innowave.png",
+    file: "/innowave.webp",
     name: "GTA logo", // Used to trigger the special blur/clip-path effect
     initialScale: 3.0,
     revealDelay: 1.4,

@@ -107,7 +107,7 @@ export default function NavigationWrapper({ children }: { children: React.ReactN
         {/* Top Bar - Logo & Time */}
         <div className="flex justify-between items-start relative z-10 pr-16 md:pr-24">
           <div className="flex items-center gap-8 md:gap-12">
-            <Image src="/logo.png" alt="CSI Logo" width={90} height={90} className="object-contain" />
+            <Image src="/logo.webp" alt="CSI Logo" width={90} height={90} className="object-contain" priority />
             
             <Link
               target="_blank"
@@ -152,14 +152,17 @@ export default function NavigationWrapper({ children }: { children: React.ReactN
                   onClick={() => setIsMenuOpen(false)}
                   className="group flex items-center justify-end gap-6 md:gap-10 w-fit relative py-2"
                 >
-                  {/* Active Page Glow Pill / Subtitle - Left side */}
-                  <span className={`hidden md:block absolute right-[110%] transition-all duration-500 font-medium tracking-[0.3em] text-xs uppercase whitespace-nowrap ${
+                  {/* Subtitle / Active Indicator - Left side */}
+                  <div className={`hidden md:flex items-center gap-2 absolute right-[110%] transition-all duration-500 font-medium tracking-[0.3em] text-xs uppercase whitespace-nowrap ${
                     isActive 
                       ? "opacity-100 translate-y-0 text-violet-400" 
-                      : "opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 text-violet-400"
+                      : "opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 text-white/50"
                   }`}>
-                    {isActive ? `✦ ACTIVE` : link.sub}
-                  </span>
+                    {isActive && (
+                      <span className="w-2 h-2 rounded-full bg-violet-400 shadow-[0_0_10px_rgba(168,85,247,1)] animate-pulse" />
+                    )}
+                    <span>{link.sub}</span>
+                  </div>
 
                   {/* Main Text */}
                   <div className="relative py-2">

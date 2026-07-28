@@ -53,7 +53,7 @@ export default function Footer() {
                 {/* Lanyard Layer - Hidden on Mobile to prevent overlapping text */}
                 <div className="absolute inset-0 z-[5] pointer-events-none overflow-hidden rounded-t-[2rem] md:rounded-t-[3rem] hidden md:block">
                     <div className="absolute top-0 right-0 w-full md:w-1/2 lg:w-1/3 h-full flex items-center justify-center translate-x-8 md:translate-x-16 lg:translate-x-24 pointer-events-auto">
-                        <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} flipped={true} frontImage={frontImg} backImage={backImg} lanyardImage="/lanyard.png" />
+                        <Lanyard position={[0, 0, 20]} gravity={[0, -40, 0]} flipped={true} frontImage={frontImg} backImage={backImg} lanyardImage="/lanyard.webp" />
                     </div>
                 </div>
 
@@ -63,7 +63,7 @@ export default function Footer() {
                         {/* Glow behind the logo */}
                         <div className="absolute inset-0 bg-violet-600/30 blur-[20px] md:blur-[30px] rounded-full w-12 h-12 md:w-20 md:h-20"></div>
                         <Image 
-                            src="/logo.png" 
+                            src="/logo.webp" 
                             alt="CSI Innowave Logo" 
                             width={80} 
                             height={80} 

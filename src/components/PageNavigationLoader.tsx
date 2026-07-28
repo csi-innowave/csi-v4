@@ -111,7 +111,7 @@ function FullScreenLoaderContent() {
                     {/* Top Left Logo & Telemetry Header */}
                     <div className="absolute top-8 left-8 flex items-center gap-3 select-none pointer-events-none z-20">
                         <Image
-                            src="/logo.png"
+                            src="/logo.webp"
                             alt="CSI Logo"
                             width={28}
                             height={28}
