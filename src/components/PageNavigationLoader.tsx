@@ -96,7 +96,7 @@ function FullScreenLoaderContent() {
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
                     transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
-                    className="fixed inset-0 z-[999999] flex flex-col items-center justify-center bg-[#050505] text-white selection:bg-white/20 overflow-hidden backdrop-blur-3xl"
+                    className="fixed inset-0 z-[999999] flex flex-col items-center justify-center bg-[#050505]/65 backdrop-blur-md transform-gpu text-white selection:bg-white/20 overflow-hidden"
                 >
                     {/* Top Ultra-Thin Hairline Progress Indicator */}
                     <div className="absolute top-0 left-0 right-0 h-[2px] w-full bg-white/5 overflow-hidden">
