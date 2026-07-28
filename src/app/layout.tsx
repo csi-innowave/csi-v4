@@ -6,6 +6,7 @@ import { Noise } from "@/components/ui/noise";
 import CursorTrail from "@/components/CursorTrail";
 import SmoothScrollProvider from "@/components/SmoothScrollProvider";
 import ScrollThread from "@/components/ScrollThread";
+import PageNavigationLoader from "@/components/PageNavigationLoader";
 
 import PageOverlapWrapper from "@/components/PageOverlapWrapper";
 
@@ -20,6 +21,7 @@ export default function RootLayout({
         <html lang="en" suppressHydrationWarning>
             <body className={`bg-[#111111] text-white ${inter.className}`} suppressHydrationWarning>
                 <SmoothScrollProvider>
+                    <PageNavigationLoader />
                     <ScrollThread />
                     <Noise />
                     <NavigationWrapper>

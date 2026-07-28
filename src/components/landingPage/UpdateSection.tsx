@@ -1,5 +1,6 @@
 "use client";
 import Image from "next/image";
+import Link from "next/link";
 import React, { useEffect, useId, useRef, useState } from "react";
 import { EventsDataType } from "@/types/EventData";
 import { useOutsideClick } from "@/hooks/use-outside-click";
@@ -82,11 +83,23 @@ export function UpdateSection() {
             />
 
             {events.length > 0 ? (
-                <ul className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
-                    {events.map((event, index) => (
-                        <EventCard key={event.id} event={event} index={index} />
-                    ))}
-                </ul>
+                <>
+                    <ul className="max-w-7xl mx-auto w-full grid grid-cols-1 md:grid-cols-2 lg:grid-cols-3 gap-8 px-4">
+                        {events.map((event, index) => (
+                            <EventCard key={event.id} event={event} index={index} />
+                        ))}
+                    </ul>
+
+                    <div className="mt-16 flex justify-center">
+                        <Link
+                            href="/events"
+                            className="group relative inline-flex items-center justify-center px-8 py-4 text-sm font-semibold tracking-widest text-white uppercase bg-white/5 border border-white/10 rounded-full overflow-hidden transition-all duration-300 hover:bg-violet-600 hover:border-violet-500 hover:shadow-[0_0_35px_rgba(139,92,246,0.5)] active:scale-95"
+                        >
+                            <span>View More Events</span>
+                            <ArrowRightIcon className="w-4 h-4 ml-3 transform transition-transform duration-300 group-hover:translate-x-1" />
+                        </Link>
+                    </div>
+                </>
             ) : (
                 <div className="flex items-center justify-center min-h-[200px]">
                     <div className="text-sm tracking-widest uppercase text-white/40 animate-pulse">
