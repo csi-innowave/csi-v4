@@ -5,7 +5,7 @@ import type { CSSProperties } from "react";
 import "@/components/dotmatrix-loader.css";
 import type { ReactNode } from "react";
 import { useEffect, useMemo, useRef } from "react";
-import { useDotMatrixPhases, usePrefersReducedMotion, useCyclePhase } from "@/components/ui/dotmatrix-hooks";
+import { useDotMatrixPhases, usePrefersReducedMotion, useCyclePhase } from "@/lib/dotmatrix-hooks";
 
 export type MatrixPattern = "diamond" | "full" | "outline" | "rose" | "cross" | "rings";
 export type DotShape = "circle" | "square" | "diamond" | "hearts";
