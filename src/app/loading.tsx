@@ -3,50 +3,39 @@ import Image from "next/image";
 
 export default function Loading() {
     return (
-        <div className="min-h-[75vh] w-full flex flex-col items-center justify-center bg-[#030305]/75 backdrop-blur-xl text-white">
-            <div className="relative w-28 h-28 flex items-center justify-center mb-6">
-                <div className="absolute -inset-2 border border-white/10 rounded-2xl pointer-events-none" />
-                <div className="absolute top-[-8px] left-[-8px] w-3 h-3 border-t-2 border-l-2 border-purple-400" />
-                <div className="absolute bottom-[-8px] right-[-8px] w-3 h-3 border-b-2 border-r-2 border-purple-400" />
-
-                <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 100 100">
-                    <circle
-                        cx="50"
-                        cy="50"
-                        r="44"
-                        fill="none"
-                        stroke="rgba(255, 255, 255, 0.08)"
-                        strokeWidth="1.5"
-                    />
-                    <circle
-                        cx="50"
-                        cy="50"
-                        r="44"
-                        fill="none"
-                        stroke="url(#gradient-aperture-fallback)"
-                        strokeWidth="2.5"
-                        strokeDasharray="276"
-                        className="animate-[spin_1.4s_easeInOut_infinite]"
-                        strokeLinecap="round"
-                    />
-                    <defs>
-                        <linearGradient id="gradient-aperture-fallback" x1="0%" y1="0%" x2="100%" y2="100%">
-                            <stop offset="0%" stopColor="#a855f7" />
-                            <stop offset="50%" stopColor="#3b82f6" />
-                            <stop offset="100%" stopColor="#ec4899" />
-                        </linearGradient>
-                    </defs>
-                </svg>
-
-                <div className="relative z-10 flex items-center justify-center animate-pulse">
-                    <Image
-                        src="/logo.png"
-                        alt="CSI Logo"
-                        width={46}
-                        height={46}
-                        className="object-contain drop-shadow-[0_0_25px_rgba(168,85,247,0.6)]"
-                    />
+        <div className="min-h-[75vh] w-full flex flex-col items-center justify-center bg-[#030305]/80 backdrop-blur-xl text-white relative overflow-hidden">
+            {/* Top Left Header */}
+            <div className="absolute top-8 left-8 flex items-center gap-3">
+                <Image
+                    src="/logo.png"
+                    alt="CSI Logo"
+                    width={28}
+                    height={28}
+                    className="object-contain opacity-90"
+                />
+                <div className="flex items-center gap-2 text-[10px] font-mono tracking-[0.3em] text-white/50 uppercase">
+                    <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-ping" />
+                    <span>CSI // INNOWAVE</span>
                 </div>
+            </div>
+
+            {/* Center 5x5 LED Dot Matrix Display */}
+            <div className="grid grid-cols-5 gap-3 mb-8 p-5 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-md relative">
+                <div className="absolute top-[-4px] left-[-4px] w-2.5 h-2.5 border-t-2 border-l-2 border-purple-400" />
+                <div className="absolute bottom-[-4px] right-[-4px] w-2.5 h-2.5 border-b-2 border-r-2 border-purple-400" />
+
+                {Array.from({ length: 25 }).map((_, i) => {
+                    const row = Math.floor(i / 5);
+                    const col = i % 5;
+                    const delay = (row + col) * 0.08;
+                    return (
+                        <div
+                            key={i}
+                            style={{ animationDelay: `${delay}s` }}
+                            className="w-2.5 h-2.5 rounded-full bg-purple-500 animate-pulse"
+                        />
+                    );
+                })}
             </div>
 
             <p className="text-xs font-semibold uppercase text-white/80 tracking-[0.5em] ml-[0.5em]">

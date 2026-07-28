@@ -109,11 +109,11 @@ function FullScreenLoaderContent() {
         <AnimatePresence>
             {isLoading && (
                 <motion.div
-                    initial={{ opacity: 0, scale: 0.98 }}
-                    animate={{ opacity: 1, scale: 1 }}
-                    exit={{ opacity: 0, scale: 1.02 }}
+                    initial={{ opacity: 0 }}
+                    animate={{ opacity: 1 }}
+                    exit={{ opacity: 0 }}
                     transition={{ duration: 0.25, ease: [0.16, 1, 0.3, 1] }}
-                    className="fixed inset-0 z-[999999] flex flex-col items-center justify-center bg-[#030305]/75 backdrop-blur-xl transform-gpu text-white selection:bg-purple-500/20 overflow-hidden"
+                    className="fixed inset-0 z-[999999] flex flex-col items-center justify-center bg-[#030305]/80 backdrop-blur-xl transform-gpu text-white selection:bg-purple-500/20 overflow-hidden"
                 >
                     {/* Top Thin Glow Bar */}
                     <div className="absolute top-0 left-0 right-0 h-[1.5px] w-full bg-white/5 overflow-hidden">
@@ -124,72 +124,68 @@ function FullScreenLoaderContent() {
                         />
                     </div>
 
-                    {/* Corner Telemetry Framing */}
-                    <div className="absolute top-8 left-8 text-[10px] font-mono tracking-[0.3em] text-white/40 uppercase flex items-center gap-2 select-none pointer-events-none">
-                        <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-ping" />
-                        <span>CSI // INNOWAVE</span>
+                    {/* Top Left Logo & Telemetry Header */}
+                    <div className="absolute top-8 left-8 flex items-center gap-3 select-none pointer-events-none z-20">
+                        <Image
+                            src="/logo.png"
+                            alt="CSI Logo"
+                            width={28}
+                            height={28}
+                            className="object-contain opacity-90"
+                        />
+                        <div className="flex items-center gap-2 text-[10px] font-mono tracking-[0.3em] text-white/50 uppercase">
+                            <span className="w-1.5 h-1.5 rounded-full bg-purple-400 animate-ping" />
+                            <span>CSI // INNOWAVE</span>
+                        </div>
                     </div>
+
+                    {/* Bottom Right Status Tag */}
                     <div className="absolute bottom-8 right-8 text-[10px] font-mono tracking-[0.3em] text-white/30 uppercase select-none pointer-events-none">
-                        <span>SYS • NAVIGATING</span>
+                        <span>MATRIX • NAVIGATING</span>
                     </div>
 
                     {/* Background Radial Spotlight */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[28rem] h-[28rem] bg-purple-600/15 rounded-full blur-[140px] pointer-events-none" />
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30rem] h-[30rem] bg-purple-600/15 rounded-full blur-[150px] pointer-events-none" />
 
-                    {/* Center Aperture & Telemetry Content */}
+                    {/* Center Dot Matrix & Telemetry Content */}
                     <div className="relative z-10 flex flex-col items-center justify-center text-center">
-                        {/* Technocultural Aperture Frame */}
-                        <div className="relative w-28 h-28 flex items-center justify-center mb-6">
-                            {/* Corner Tech Brackets */}
-                            <div className="absolute -inset-2 border border-white/10 rounded-2xl pointer-events-none" />
-                            <div className="absolute top-[-8px] left-[-8px] w-3 h-3 border-t-2 border-l-2 border-purple-400" />
-                            <div className="absolute bottom-[-8px] right-[-8px] w-3 h-3 border-b-2 border-r-2 border-purple-400" />
+                        {/* 5x5 LED Dot Matrix Display */}
+                        <div className="grid grid-cols-5 gap-3 mb-8 p-5 rounded-2xl bg-white/[0.03] border border-white/10 backdrop-blur-md shadow-2xl relative">
+                            {/* Matrix Framing Corner Highlights */}
+                            <div className="absolute top-[-4px] left-[-4px] w-2.5 h-2.5 border-t-2 border-l-2 border-purple-400" />
+                            <div className="absolute bottom-[-4px] right-[-4px] w-2.5 h-2.5 border-b-2 border-r-2 border-purple-400" />
 
-                            {/* Dynamic SVG Laser Arc */}
-                            <svg className="absolute inset-0 w-full h-full -rotate-90" viewBox="0 0 100 100">
-                                <circle
-                                    cx="50"
-                                    cy="50"
-                                    r="44"
-                                    fill="none"
-                                    stroke="rgba(255, 255, 255, 0.08)"
-                                    strokeWidth="1.5"
-                                />
-                                <motion.circle
-                                    cx="50"
-                                    cy="50"
-                                    r="44"
-                                    fill="none"
-                                    stroke="url(#gradient-aperture)"
-                                    strokeWidth="2.5"
-                                    strokeDasharray="276"
-                                    animate={{ strokeDashoffset: [276, 60, 0] }}
-                                    transition={{ repeat: Infinity, duration: 1.4, ease: "easeInOut" }}
-                                    strokeLinecap="round"
-                                />
-                                <defs>
-                                    <linearGradient id="gradient-aperture" x1="0%" y1="0%" x2="100%" y2="100%">
-                                        <stop offset="0%" stopColor="#a855f7" />
-                                        <stop offset="50%" stopColor="#3b82f6" />
-                                        <stop offset="100%" stopColor="#ec4899" />
-                                    </linearGradient>
-                                </defs>
-                            </svg>
-
-                            {/* Center Logo with Breathing Aura */}
-                            <motion.div
-                                animate={{ scale: [0.94, 1.06, 0.94], opacity: [0.85, 1, 0.85] }}
-                                transition={{ repeat: Infinity, duration: 2, ease: "easeInOut" }}
-                                className="relative z-10 flex items-center justify-center"
-                            >
-                                <Image
-                                    src="/logo.png"
-                                    alt="CSI Logo"
-                                    width={46}
-                                    height={46}
-                                    className="object-contain drop-shadow-[0_0_25px_rgba(168,85,247,0.6)]"
-                                />
-                            </motion.div>
+                            {Array.from({ length: 25 }).map((_, i) => {
+                                const row = Math.floor(i / 5);
+                                const col = i % 5;
+                                const delay = (row + col) * 0.08;
+                                return (
+                                    <motion.div
+                                        key={i}
+                                        animate={{
+                                            scale: [0.65, 1.2, 0.65],
+                                            opacity: [0.25, 1, 0.25],
+                                            backgroundColor: [
+                                                "rgba(255, 255, 255, 0.2)",
+                                                "rgba(168, 85, 247, 1)",
+                                                "rgba(255, 255, 255, 0.2)",
+                                            ],
+                                            boxShadow: [
+                                                "0 0 0px rgba(0,0,0,0)",
+                                                "0 0 12px rgba(168,85,247,0.9)",
+                                                "0 0 0px rgba(0,0,0,0)",
+                                            ],
+                                        }}
+                                        transition={{
+                                            repeat: Infinity,
+                                            duration: 1.2,
+                                            delay,
+                                            ease: "easeInOut",
+                                        }}
+                                        className="w-2.5 h-2.5 rounded-full"
+                                    />
+                                );
+                            })}
                         </div>
 
                         {/* Percentage Ticker */}
