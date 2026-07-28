@@ -128,11 +128,11 @@ export default function Footer() {
                     <div className="flex flex-col gap-1 md:col-span-2 pt-0 md:pt-6">
                         <h3 className="text-white text-base md:text-lg font-medium mb-2 md:mb-3">Quick links</h3>
                         <div className="grid grid-cols-2 gap-x-8 gap-y-2">
-                            <Link href="/" className="hover:text-white transition-colors">Home</Link>
-                            <Link href="/team" className="hover:text-white transition-colors">Team</Link>
-                            <Link href="/events" className="hover:text-white transition-colors">Events</Link>
-                            <Link href="/gallery" className="hover:text-white transition-colors">Gallery</Link>
-                            <Link href="/about" className="hover:text-white transition-colors">About</Link>
+                            <Link href="/" prefetch={true} className="hover:text-white transition-colors">Home</Link>
+                            <Link href="/team" prefetch={true} className="hover:text-white transition-colors">Team</Link>
+                            <Link href="/events" prefetch={true} className="hover:text-white transition-colors">Events</Link>
+                            <Link href="/gallery" prefetch={true} className="hover:text-white transition-colors">Gallery</Link>
+                            <Link href="/about" prefetch={true} className="hover:text-white transition-colors">About</Link>
                         </div>
                     </div>
                 </div>

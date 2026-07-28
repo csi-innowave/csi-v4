@@ -1,6 +1,7 @@
 "use client";
 
 import { useState, useEffect, useLayoutEffect } from "react";
+import { usePathname } from "next/navigation";
 import { motion, AnimatePresence } from "framer-motion";
 import Link from "next/link";
 import Image from "next/image";
@@ -11,11 +12,13 @@ const useIsomorphicLayoutEffect = typeof window !== "undefined" ? useLayoutEffec
 const spaceGrotesk = Space_Grotesk({
   subsets: ["latin"],
   weight: ["300", "400", "500", "600", "700"],
+  display: "swap",
 });
 
 const instrumentSerif = Instrument_Serif({
   weight: "400",
   subsets: ["latin"],
+  display: "swap",
 });
 
 // Framer Motion Variants for staggering the menu links
@@ -44,6 +47,7 @@ const menuItemVariants = {
 };
 
 export default function NavigationWrapper({ children }: { children: React.ReactNode }) {
+  const pathname = usePathname();
   const [isMenuOpen, setIsMenuOpen] = useState(false);
   const [menuFullyClosed, setMenuFullyClosed] = useState(true);
   const [savedScroll, setSavedScroll] = useState(0);
@@ -138,27 +142,40 @@ export default function NavigationWrapper({ children }: { children: React.ReactN
           animate={isMenuOpen ? "open" : "closed"}
           className="flex flex-col items-end gap-3 md:gap-5 relative z-10 my-auto w-full md:pr-12 lg:pr-24"
         >
-          {NAV_LINKS.map((link) => (
-            <motion.li key={link.name} variants={menuItemVariants} className="w-full flex justify-end">
-              <Link
-                href={link.href}
-                onClick={() => setIsMenuOpen(false)}
-                className="group flex items-center justify-end gap-6 md:gap-10 w-fit relative py-2"
-              >
-                {/* Hover Subtitle - Left side */}
-                <span className="hidden md:block absolute right-[110%] opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 transition-all duration-500 text-violet-400 font-medium tracking-[0.3em] text-xs uppercase whitespace-nowrap">
-                  {link.sub}
-                </span>
-
-                {/* Main Text */}
-                <div className="relative py-2">
-                  <span className={`${instrumentSerif.className} block text-3xl sm:text-4xl md:text-5xl lg:text-6xl text-white/70 transition-all duration-500 group-hover:text-white group-hover:-translate-x-4 group-hover:skew-x-[-6deg] origin-bottom`}>
-                    {link.name}
+          {NAV_LINKS.map((link) => {
+            const isActive = link.href === "/" ? pathname === "/" : pathname.startsWith(link.href);
+            return (
+              <motion.li key={link.name} variants={menuItemVariants} className="w-full flex justify-end">
+                <Link
+                  href={link.href}
+                  prefetch={true}
+                  onClick={() => setIsMenuOpen(false)}
+                  className="group flex items-center justify-end gap-6 md:gap-10 w-fit relative py-2"
+                >
+                  {/* Active Page Glow Pill / Subtitle - Left side */}
+                  <span className={`hidden md:block absolute right-[110%] transition-all duration-500 font-medium tracking-[0.3em] text-xs uppercase whitespace-nowrap ${
+                    isActive 
+                      ? "opacity-100 translate-y-0 text-violet-400" 
+                      : "opacity-0 translate-y-4 group-hover:opacity-100 group-hover:translate-y-0 text-violet-400"
+                  }`}>
+                    {isActive ? `✦ ACTIVE` : link.sub}
                   </span>
-                  
-                  {/* Underline reveal */}
-                  <div className="absolute bottom-2 right-0 w-0 h-[3px] bg-violet-400 transition-all duration-500 group-hover:w-full" />
-                </div>
+
+                  {/* Main Text */}
+                  <div className="relative py-2">
+                    <span className={`${instrumentSerif.className} block text-3xl sm:text-4xl md:text-5xl lg:text-6xl transition-all duration-500 origin-bottom ${
+                      isActive 
+                        ? "text-white font-semibold shadow-sm" 
+                        : "text-white/70 group-hover:text-white group-hover:-translate-x-4 group-hover:skew-x-[-6deg]"
+                    }`}>
+                      {link.name}
+                    </span>
+                    
+                    {/* Underline reveal */}
+                    <div className={`absolute bottom-2 right-0 h-[3px] bg-violet-400 transition-all duration-500 ${
+                      isActive ? "w-full shadow-[0_0_12px_rgba(168,85,247,0.9)]" : "w-0 group-hover:w-full"
+                    }`} />
+                  </div>
 
                 {/* Number Slot Machine Effect */}
                 <div className="flex flex-col items-center justify-center relative overflow-hidden h-6 w-6">
@@ -171,7 +188,8 @@ export default function NavigationWrapper({ children }: { children: React.ReactN
                 </div>
               </Link>
             </motion.li>
-          ))}
+          );
+        })}
         </motion.ul>
 
         {/* Bottom Bar - Socials */}
