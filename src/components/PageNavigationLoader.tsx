@@ -123,11 +123,6 @@ function FullScreenLoaderContent() {
                         </div>
                     </div>
 
-                    {/* Bottom Right Status Tag */}
-                    <div className="absolute bottom-8 right-8 text-[10px] font-mono tracking-[0.3em] text-white/30 uppercase select-none pointer-events-none">
-                        <span>DOTMATRIX • NAVIGATING</span>
-                    </div>
-
                     {/* Background Radial Spotlight */}
                     <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[30rem] h-[30rem] bg-purple-600/15 rounded-full blur-[150px] pointer-events-none" />
 
