@@ -55,7 +55,7 @@ export default function AboutCSI() {
 
                 {/* Poster Container - Positioned below text on mobile, full-screen overlay on desktop */}
                 <div className="relative md:absolute md:inset-0 w-full h-[60vh] xs:h-[65vh] sm:h-[75vh] md:h-full z-10 shrink-0 flex items-center justify-center overflow-hidden -mt-12 sm:-mt-16 md:mt-0">
-                    <GtaViPoster background="transparent" fit={0.6} className="w-full h-full transform max-md:scale-[2.2] max-sm:scale-[1.8] md:scale-100 origin-center" />
+                    <GtaViPoster background="transparent" fit={0.6} className="w-full h-full transform max-md:scale-[2.2] max-sm:scale-[1.8] md:scale-100 md:-translate-x-12 lg:-translate-x-20 origin-center" />
                 </div>
             </section>
 
