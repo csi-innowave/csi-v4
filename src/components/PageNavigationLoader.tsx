@@ -12,7 +12,6 @@ function FullScreenLoaderContent() {
 
     const [isLoading, setIsLoading] = useState(false);
     const [targetPageName, setTargetPageName] = useState("");
-    const [counter, setCounter] = useState(0);
     const prevPathnameRef = useRef(pathname);
 
     // Fade out loader when pathname or searchParams change (page is loaded)
@@ -25,22 +24,6 @@ function FullScreenLoaderContent() {
             return () => clearTimeout(timer);
         }
     }, [pathname, searchParams]);
-
-    // Rapid 00% -> 98% percentage counter animation
-    useEffect(() => {
-        if (isLoading) {
-            setCounter(14);
-            const interval = setInterval(() => {
-                setCounter((prev) => {
-                    if (prev >= 98) return 98;
-                    return prev + Math.floor(Math.random() * 16 + 8);
-                });
-            }, 75);
-            return () => clearInterval(interval);
-        } else {
-            setCounter(0);
-        }
-    }, [isLoading]);
 
     // Safety fallback: auto dismiss after 6s in case navigation is interrupted
     useEffect(() => {
@@ -153,11 +136,6 @@ function FullScreenLoaderContent() {
                         {/* Installed DotmSquare15 Component */}
                         <div className="mb-6 flex items-center justify-center p-6 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-md shadow-2xl">
                             <DotmSquare15 size={48} dotSize={6} />
-                        </div>
-
-                        {/* Percentage Ticker */}
-                        <div className="font-mono text-3xl font-light tracking-tighter text-white/90 mb-2">
-                            {String(counter).padStart(2, "0")}<span className="text-purple-400 text-sm font-normal ml-0.5">%</span>
                         </div>
 
                         {/* Kinetic Letter-Spacing Reveal */}
