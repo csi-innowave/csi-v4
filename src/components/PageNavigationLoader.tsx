@@ -151,8 +151,8 @@ function FullScreenLoaderContent() {
                     {/* Center Installed DotMatrix Component & Telemetry Content */}
                     <div className="relative z-10 flex flex-col items-center justify-center text-center">
                         {/* Installed DotmSquare15 Component */}
-                        <div className="mb-6 flex items-center justify-center p-4 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-md shadow-2xl">
-                            <DotmSquare15 size={32} dotSize={4} />
+                        <div className="mb-6 flex items-center justify-center p-6 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-md shadow-2xl">
+                            <DotmSquare15 size={48} dotSize={6} />
                         </div>
 
                         {/* Percentage Ticker */}
