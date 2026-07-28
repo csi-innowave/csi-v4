@@ -19,7 +19,7 @@ function FullScreenLoaderContent() {
             prevPathnameRef.current = pathname;
             const timer = setTimeout(() => {
                 setIsLoading(false);
-            }, 250);
+            }, 200);
             return () => clearTimeout(timer);
         }
     }, [pathname, searchParams]);
@@ -67,7 +67,6 @@ function FullScreenLoaderContent() {
             const targetPath = href.split("?")[0].split("#")[0];
 
             if (targetPath && targetPath !== currentPath) {
-                // Format page name for display
                 let pageTitle = targetPath.replace("/", "").toUpperCase();
                 if (!pageTitle) pageTitle = "HOME";
 
@@ -76,7 +75,6 @@ function FullScreenLoaderContent() {
             }
         };
 
-        // Handle browser back/forward buttons
         const handlePopState = () => {
             setIsLoading(true);
         };
@@ -97,55 +95,43 @@ function FullScreenLoaderContent() {
                     initial={{ opacity: 0 }}
                     animate={{ opacity: 1 }}
                     exit={{ opacity: 0 }}
-                    transition={{ duration: 0.2, ease: "easeInOut" }}
-                    className="fixed inset-0 z-[999999] flex flex-col items-center justify-center bg-[#050507] text-white selection:bg-purple-500/30 overflow-hidden"
+                    transition={{ duration: 0.2, ease: [0.16, 1, 0.3, 1] }}
+                    className="fixed inset-0 z-[999999] flex flex-col items-center justify-center bg-[#050505] text-white selection:bg-white/20 overflow-hidden backdrop-blur-3xl"
                 >
-                    {/* Background Radial Glow */}
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[35rem] h-[35rem] bg-violet-600/15 rounded-full blur-[140px] pointer-events-none" />
-                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[25rem] h-[25rem] bg-blue-600/10 rounded-full blur-[100px] pointer-events-none" />
+                    {/* Top Ultra-Thin Hairline Progress Indicator */}
+                    <div className="absolute top-0 left-0 right-0 h-[2px] w-full bg-white/5 overflow-hidden">
+                        <motion.div
+                            animate={{ x: ["-100%", "100%"] }}
+                            transition={{ repeat: Infinity, duration: 1.2, ease: "easeInOut" }}
+                            className="w-full h-full bg-gradient-to-r from-transparent via-white to-transparent shadow-[0_0_12px_rgba(255,255,255,0.8)]"
+                        />
+                    </div>
 
-                    {/* Centered Content Card */}
-                    <div className="relative z-10 flex flex-col items-center justify-center p-6 text-center max-w-sm">
-                        {/* Logo with Spinning Gradient Ring */}
-                        <div className="relative mb-8 flex items-center justify-center">
-                            <motion.div
-                                animate={{ rotate: 360 }}
-                                transition={{ repeat: Infinity, duration: 1.8, ease: "linear" }}
-                                className="w-20 h-20 rounded-full border-2 border-transparent border-t-violet-500 border-r-blue-500"
-                            />
+                    {/* Subtle Center Glow */}
+                    <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[24rem] h-[24rem] bg-violet-600/10 rounded-full blur-[120px] pointer-events-none" />
+
+                    {/* Minimalist Center Content */}
+                    <div className="relative z-10 flex flex-col items-center justify-center text-center">
+                        {/* Minimal Spinner Ring with Logo */}
+                        <div className="relative mb-6 flex items-center justify-center">
+                            <div className="w-16 h-16 rounded-full border border-white/10 border-t-white animate-spin [animation-duration:1s]" />
                             <div className="absolute inset-0 flex items-center justify-center">
                                 <Image
                                     src="/logo.png"
                                     alt="CSI Logo"
-                                    width={42}
-                                    height={42}
-                                    className="object-contain animate-pulse"
+                                    width={32}
+                                    height={32}
+                                    className="object-contain opacity-90"
                                 />
                             </div>
                         </div>
 
-                        {/* Navigation Status Text */}
-                        <h3 className="text-xl font-bold tracking-[0.25em] text-white uppercase mb-2">
-                            {targetPageName ? `LOADING ${targetPageName}` : "LOADING EXPERIENCE..."}
-                        </h3>
-
-                        {/* Animated Gradient Progress Line */}
-                        <div className="w-36 h-1 bg-white/10 rounded-full overflow-hidden mt-4 relative">
-                            <motion.div
-                                animate={{
-                                    x: ["-100%", "100%"],
-                                }}
-                                transition={{
-                                    repeat: Infinity,
-                                    duration: 1.2,
-                                    ease: "easeInOut",
-                                }}
-                                className="w-full h-full bg-gradient-to-r from-blue-500 via-violet-500 to-pink-500 rounded-full"
-                            />
-                        </div>
-
-                        <p className="mt-4 text-[11px] font-semibold tracking-[0.3em] uppercase text-white/40">
-                            CSI • MAIT
+                        {/* Editorial Minimal Typography */}
+                        <p className="text-xs font-medium tracking-[0.4em] uppercase text-white/80">
+                            {targetPageName || "CSI • MAIT"}
+                        </p>
+                        <p className="mt-2 text-[10px] font-mono tracking-[0.3em] uppercase text-white/30">
+                            Loading
                         </p>
                     </div>
                 </motion.div>
