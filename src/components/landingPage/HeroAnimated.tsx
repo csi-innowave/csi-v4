@@ -4,7 +4,8 @@ import { motion, useTransform, useMotionValue, useSpring } from "framer-motion";
 import Link from "next/link";
 import Magnetic from "@/components/magicui/Magnetic";
 import { useEffect } from "react";
-import Particles from "@/components/Particles";
+import dynamic from 'next/dynamic';
+const Particles = dynamic(() => import('@/components/Particles'), { ssr: false });
 
 export default function HeroAnimated() {
 
@@ -199,13 +200,13 @@ export default function HeroAnimated() {
                                 {/* The Box around the text */}
                                 <motion.div variants={textReveal} className="relative overflow-hidden rounded-none border border-white/10 shadow-2xl">
                                     {/* Video in background of the box */}
-                                    <video 
-                                        src="/textfill.mp4" 
-                                        autoPlay loop muted playsInline 
+                                    <video
+                                        src="/textfill.mp4"
+                                        autoPlay loop muted playsInline
                                         onEnded={(e) => e.currentTarget.play()}
-                                        className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none opacity-90" 
+                                        className="absolute inset-0 w-full h-full object-cover z-0 pointer-events-none opacity-90"
                                     />
-                                    
+
                                     {/* The Animating Black Text (Becomes transparent due to parent mix-blend-lighten) */}
                                     <motion.div variants={textReveal} className="relative z-10 pl-4 md:pl-8 pr-2 md:pr-4 py-2 md:py-4 flex justify-end">
                                         <h1

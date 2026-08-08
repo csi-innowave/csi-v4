@@ -129,16 +129,16 @@ function FullScreenLoaderContent() {
                     {/* Center Installed DotMatrix Component & Telemetry Content */}
                     <div className="relative z-10 flex flex-col items-center justify-center text-center">
                         {/* Installed DotmSquare15 Component */}
-                        <div className="mb-6 flex items-center justify-center p-6 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-md shadow-2xl">
+                        <div className="mb-6 flex items-center justify-center">
                             <DotmSquare15 size={48} dotSize={6} />
                         </div>
 
                         {/* Kinetic Letter-Spacing Reveal */}
                         <motion.p
-                            initial={{ letterSpacing: "0.2em", opacity: 0.6 }}
-                            animate={{ letterSpacing: "0.5em", opacity: 1 }}
-                            transition={{ repeat: Infinity, repeatType: "reverse", duration: 1.5, ease: "easeInOut" }}
-                            className="text-xs font-semibold uppercase text-white/80 tracking-[0.4em] ml-[0.4em]"
+                            initial={{ opacity: 0 }}
+                            animate={{ opacity: 1 }}
+                            transition={{ duration: 0.5, ease: "easeOut" }}
+                            className="text-xs font-semibold uppercase text-white/80 tracking-[0.5em] ml-[0.5em]"
                         >
                             {targetPageName ? `// ${targetPageName}` : "// LOADING"}
                         </motion.p>

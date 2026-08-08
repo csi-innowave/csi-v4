@@ -21,7 +21,7 @@ export default function Loading() {
             </div>
 
             {/* Installed DotmSquare15 Component */}
-            <div className="mb-6 flex items-center justify-center p-6 rounded-2xl bg-white/[0.02] border border-white/10 backdrop-blur-md shadow-2xl">
+            <div className="mb-6 flex items-center justify-center">
                 <DotmSquare15 size={48} dotSize={6} />
             </div>
 
