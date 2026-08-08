@@ -9,14 +9,14 @@ import { usePathname } from "next/navigation";
 import Lanyard from "@/components/Lanyard";
 
 const instrumentSerif = Instrument_Serif({
-  subsets: ["latin"],
-  weight: "400",
-  style: "normal",
+    subsets: ["latin"],
+    weight: "400",
+    style: "normal",
 });
 
 const spaceGrotesk = Space_Grotesk({
-  subsets: ["latin"],
-  weight: ["300", "400", "500", "600", "700"],
+    subsets: ["latin"],
+    weight: ["300", "400", "500", "600", "700"],
 });
 
 import { motion } from "framer-motion";
@@ -27,7 +27,7 @@ export default function Footer() {
 
     useEffect(() => {
         const img = new window.Image();
-        img.onload = () => {}; 
+        img.onload = () => { };
         img.onerror = () => {
             setFrontImg('/ID_front_compressed.jpg');
             setBackImg('/ID_back_compressed.jpg');
@@ -38,13 +38,13 @@ export default function Footer() {
     return (
         <div className="relative w-full z-50">
             <motion.footer className="relative bg-[#0a0a0a] text-white/80 rounded-t-[2rem] md:rounded-t-[3rem] w-full px-5 sm:px-8 md:px-12 pt-10 md:pt-16 pb-6 md:pb-8 border-t border-white/[0.04] shadow-[0_-10px_40px_rgba(0,0,0,0.5)]">
-                
+
                 {/* Background Layer (Clipped to rounded corners) */}
                 <div className="absolute inset-0 overflow-hidden rounded-t-[2rem] md:rounded-t-[3rem] z-0">
                     {/* Topographic Background SVG - Violet tinted (Original Style Extended) */}
-                    <div className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-screen" 
-                        style={{ 
-                            backgroundImage: `url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-100 100 C 150 -50 300 250 600 150 S 900 -50 1200 200 S 1500 450 1800 150 S 2100 -50 2500 200 S 2800 450 3200 150' stroke='%238b5cf6' fill='none' stroke-width='1.5'/%3E%3Cpath d='M-100 200 C 200 0 400 350 800 200 S 1200 200 1400 300 S 1800 400 2200 200 S 2600 200 3000 300 S 3400 400 3800 200' stroke='%238b5cf6' fill='none' stroke-width='1.5'/%3E%3Cpath d='M-100 300 C 100 100 350 450 750 300 S 1200 300 1400 400 S 1700 500 2100 300 S 2600 300 3000 400 S 3300 500 3700 300' stroke='%238b5cf6' fill='none' stroke-width='1.5'/%3E%3Cpath d='M-100 400 C 150 250 350 550 700 400 S 1200 400 1400 500 S 1800 600 2200 400 S 2600 400 3000 500 S 3400 600 3800 400' stroke='%238b5cf6' fill='none' stroke-width='1.5'/%3E%3C/svg%3E")`, 
+                    <div className="absolute inset-0 opacity-[0.05] pointer-events-none mix-blend-screen"
+                        style={{
+                            backgroundImage: `url("data:image/svg+xml,%3Csvg width='100%25' height='100%25' xmlns='http://www.w3.org/2000/svg'%3E%3Cpath d='M-100 100 C 150 -50 300 250 600 150 S 900 -50 1200 200 S 1500 450 1800 150 S 2100 -50 2500 200 S 2800 450 3200 150' stroke='%238b5cf6' fill='none' stroke-width='1.5'/%3E%3Cpath d='M-100 200 C 200 0 400 350 800 200 S 1200 200 1400 300 S 1800 400 2200 200 S 2600 200 3000 300 S 3400 400 3800 200' stroke='%238b5cf6' fill='none' stroke-width='1.5'/%3E%3Cpath d='M-100 300 C 100 100 350 450 750 300 S 1200 300 1400 400 S 1700 500 2100 300 S 2600 300 3000 400 S 3300 500 3700 300' stroke='%238b5cf6' fill='none' stroke-width='1.5'/%3E%3Cpath d='M-100 400 C 150 250 350 550 700 400 S 1200 400 1400 500 S 1800 600 2200 400 S 2600 400 3000 500 S 3400 600 3800 400' stroke='%238b5cf6' fill='none' stroke-width='1.5'/%3E%3C/svg%3E")`,
                             backgroundSize: 'cover'
                         }}>
                     </div>
@@ -62,11 +62,11 @@ export default function Footer() {
                     <div className="relative">
                         {/* Glow behind the logo */}
                         <div className="absolute inset-0 bg-violet-600/30 blur-[20px] md:blur-[30px] rounded-full w-12 h-12 md:w-20 md:h-20"></div>
-                        <Image 
-                            src="/logo.webp" 
-                            alt="CSI Innowave Logo" 
-                            width={80} 
-                            height={80} 
+                        <Image
+                            src="/logo.webp"
+                            alt="CSI Innowave Logo"
+                            width={80}
+                            height={80}
                             className="relative w-12 h-12 md:w-20 md:h-20 object-contain drop-shadow-[0_0_15px_rgba(139,92,246,0.5)]"
                         />
                     </div>
@@ -75,9 +75,9 @@ export default function Footer() {
                 {/* Central Floating 3D Asterisk */}
                 <div className="absolute top-0 left-1/2 -translate-x-1/2 -translate-y-1/2 flex justify-center z-20 pointer-events-none">
                     <div className="relative w-16 h-16 md:w-32 md:h-32 flex items-center justify-center">
-                        <div className="absolute w-full h-[25%] bg-violet-600 rounded-full rotate-0 opacity-90 shadow-[inset_0_0_15px_rgba(0,0,0,0.5)] border border-violet-400/50" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(0,0,0,0.2) 3px, rgba(0,0,0,0.2) 6px)'}}></div>
-                        <div className="absolute w-full h-[25%] bg-violet-600 rounded-full rotate-[60deg] opacity-90 shadow-[inset_0_0_15px_rgba(0,0,0,0.5)] border border-violet-400/50" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(0,0,0,0.2) 3px, rgba(0,0,0,0.2) 6px)'}}></div>
-                        <div className="absolute w-full h-[25%] bg-violet-600 rounded-full -rotate-[60deg] opacity-90 shadow-[inset_0_0_15px_rgba(0,0,0,0.5)] border border-violet-400/50" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(0,0,0,0.2) 3px, rgba(0,0,0,0.2) 6px)'}}></div>
+                        <div className="absolute w-full h-[25%] bg-violet-600 rounded-full rotate-0 opacity-90 shadow-[inset_0_0_15px_rgba(0,0,0,0.5)] border border-violet-400/50" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(0,0,0,0.2) 3px, rgba(0,0,0,0.2) 6px)' }}></div>
+                        <div className="absolute w-full h-[25%] bg-violet-600 rounded-full rotate-[60deg] opacity-90 shadow-[inset_0_0_15px_rgba(0,0,0,0.5)] border border-violet-400/50" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(0,0,0,0.2) 3px, rgba(0,0,0,0.2) 6px)' }}></div>
+                        <div className="absolute w-full h-[25%] bg-violet-600 rounded-full -rotate-[60deg] opacity-90 shadow-[inset_0_0_15px_rgba(0,0,0,0.5)] border border-violet-400/50" style={{ backgroundImage: 'repeating-linear-gradient(45deg, transparent, transparent 3px, rgba(0,0,0,0.2) 3px, rgba(0,0,0,0.2) 6px)' }}></div>
                     </div>
                 </div>
 
@@ -94,7 +94,7 @@ export default function Footer() {
                         <Link href="https://www.instagram.com/mait_csi_innowave/" target="_blank" className={`${spaceGrotesk.className} bg-violet-600 hover:bg-violet-500 text-white px-5 py-2.5 md:px-6 md:py-2.5 rounded-full flex items-center justify-center gap-3 font-semibold text-xs sm:text-sm transition-all hover:scale-105 shadow-[0_0_20px_rgba(139,92,246,0.3)]`}>
                             Follow on Instagram <span className="bg-white text-violet-600 rounded-full p-1"><FaArrowRight size={10} /></span>
                         </Link>
-                        <Link href="#" target="_blank" className={`${spaceGrotesk.className} border border-violet-500/50 text-violet-400 hover:bg-violet-500/10 px-5 py-2.5 md:px-6 md:py-2.5 rounded-full flex items-center justify-center gap-3 font-semibold text-xs sm:text-sm transition-transform hover:scale-105`}>
+                        <Link href="https://chat.whatsapp.com/FxhR0N1QrNe3ST54oYv1Dh" target="_blank" className={`${spaceGrotesk.className} border border-violet-500/50 text-violet-400 hover:bg-violet-500/10 px-5 py-2.5 md:px-6 md:py-2.5 rounded-full flex items-center justify-center gap-3 font-semibold text-xs sm:text-sm transition-transform hover:scale-105`}>
                             Join Community <span className="bg-violet-500/20 text-violet-400 rounded-full p-1"><FaArrowRight size={10} /></span>
                         </Link>
                     </div>
