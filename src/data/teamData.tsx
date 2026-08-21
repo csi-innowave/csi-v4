@@ -210,15 +210,6 @@ export const people2: Person[] = [
 
 // CSI_Advisors_Pics
 export const people3: Person[] = [
-    {
-        id: 1,
-        image_source: "",
-        name: "Saksham Gupta",
-        position: "Advisor",
-        links: {
-            linkedin: "https://www.linkedin.com/in/saksham-gupta-057669126/",
-        },
-    },
 
     {
         id: 2,
