@@ -2,7 +2,8 @@ import React from "react";
 import { GtaViPoster } from "@/components/GtaViPoster";
 import { ObjectivesSection } from "./Objectives";
 import { AboutMates } from "./AboutMates";
-import CurvedLoop from '@/components/CurvedLoopClient';
+import dynamic from 'next/dynamic';
+const CurvedLoop = dynamic(() => import('@/components/CurvedLoop'), { ssr: false });
 import { Space_Grotesk, Instrument_Serif } from "next/font/google";
 import Image from "next/image";
 
