@@ -212,14 +212,14 @@ export const people2: Person[] = [
 export const people3: Person[] = [
     {
         id: 1,
-        image_source:
-            "https://res.cloudinary.com/dop6gul0f/image/upload/v1754420295/saksham_gupta_pkpr36.jpg",
+        image_source: "",
         name: "Saksham Gupta",
         position: "Advisor",
         links: {
             linkedin: "https://www.linkedin.com/in/saksham-gupta-057669126/",
         },
     },
+
     {
         id: 2,
         image_source:
